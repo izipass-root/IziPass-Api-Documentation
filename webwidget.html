@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>IziPass Documentation for Developers</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">    
+    <link rel="shortcut icon" href="favicon.ico">  
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="assets/plugins/lightbox/dist/ekko-lightbox.min.css">
+    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+</head> 
+
+<body class="body-pink">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="index.html">
+                            <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                            <span class="text-highlight">Izi</span><span class="text-bold">Pass</span>
+                        </a>
+                    </h1>
+                </div><!--//branding-->
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">Web Widget</li>
+                </ol>
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+                <div id="doc-header" class="doc-header text-center">
+                    <h1 class="doc-title"><span aria-hidden="true" class="icon icon_puzzle_alt"></span> Web Widget</h1>
+                    <div class="meta"><i class="fa fa-clock-o"></i> Last updated: March 16th, 2020</div>
+                </div><!--//doc-header-->
+                <div class="doc-body">
+                    <div class="doc-content">
+                        <div class="content-inner">
+                            <section id="apikeys" class="doc-section">
+                                <h2 class="section-title">API Key</h2>
+                                <div class="section-block">
+                                    <p>
+                                        IziPass uses API keys to allow access to the APIs. 
+                                        You can get API key through your IziPass Agent account - Widget page.                                        
+                                    </p>
+                                    
+                                </div><!--//section-block-->
+                         
+                                
+                            </section><!--//doc-section-->
+                            
+                            <section id="widget-configuration" class="doc-section">
+                                <h2 class="section-title">Widget configuration</h2>
+                                <div id="basic-setup" class="section-block">
+                                    <h3 class="block-title">Basic setup</h3>
+                                    <p>
+                                        Paste the following line into your page:
+                                    </p>
+                                    <div class="code-block">
+                                        <h6>Basic setup example</h6>
+                                        <pre><code class="language-markup">&lt;script id=&quot;izipass-web-widget&quot; src=&quot;https://izipass.ru/widget/Init?apiKey=[Your API Key]&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+                                            </code>
+                                        </pre>
+                                    </div>
+        
+                                </div><!--//section-block-->
+                                <div id="extended-setup" class="section-block">
+                                    <h3 class="block-title">Extended setup</h3>
+                                    <p>
+                                        Or add additional parameters to customize widget appearance and behavior:
+                                    </p>
+                                    <div class="code-block">
+                                        <h4>Extended setup example</h4>
+                                        <pre><code class="language-markup">&lt;script id=&quot;izipass-web-widget&quot; src=&quot;https://izipass.ru/widget/Init?apiKey=[Your API Key]&airportIata=HRK&height=800&lang=ru&hideHeader=true&BackgroundColor=%23302E47&ButtonColor=%23F9D332&InputColor=%23FFFFFF&LinkColor=%230089FF&HeadingColor=%23FFFFFF&DefaultTextColor=%23000000&ErrorColor=%23FF0000&TimepickerBackgroundColor=%23CCCCCC&ServiceDescriptionColor=%23767676&LabelColor=%2395989A&ImportantColor=%23F9D332&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+                                            </code>
+                                        </pre>
+                                    </div>
+                                </div>
+                                <div id="widget-parameters" class="section-block">
+                                    <div class="section-block">
+                                    <h4>Widget Parameters</h4>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Parameter name</th>
+                                                    <th width="120px">Value format</th>
+                                                    <th width="120px">Default value</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>apiKey</td>
+                                                    <td>GUID</td>
+                                                    <td>[Your api key]</td>
+                                                    <td>Your public API Key</td>
+                                                </tr>
+						<tr>
+                                                    <th scope="row">2</th>
+                                                    <td>airportIata</td>
+                                                    <td>Three-letter IATA code</td>
+                                                    <td>None</td>
+                                                    <td>If you want to open widget not on airport search page, but on the list of service categories available for particular airport, set this parameter to IATA code of desired airport</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td>category</td>
+                                                    <td>"VipService", "BusinessLounge", "FastTrack"</td>
+                                                    <td>None</td>
+                                                    <td>If you want to open widget on specific service category of airport. Works only in pair with parameter <b><i>airportIata</i></b></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">4</th>
+                                                    <td>lang</td>
+                                                    <td>"en", "ua" or "ru"</td>
+                                                    <td>en</td>
+                                                    <td>Widget display language</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">5</th>
+                                                    <td>height</td>
+                                                    <td>Integer value</td>
+                                                    <td>None</td>
+                                                    <td>Widget is able to dynamically adjust to container you put it into, but it is possible to limit max widget height using this parameter</td>
+                                                </tr>
+						<tr>
+                                                    <th scope="row">6</th>
+                                                    <td>hideHeader</td>
+                                                    <td>Boolean value</td>
+                                                    <td>false</td>
+                                                    <td>Widget could be shown either with or without header and footer. They are turned on and off simultaneously. Header contains language selection dropdown and footer contains IziPass logo</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">7</th>
+                                                    <td>backgroundColor</td>
+                                                    <td>Hex color code</td>
+                                                    <td>#FFFFFF</td>
+                                                    <td>Color used for widget background</td>
+                                                </tr>
+						<tr>
+                                                    <th scope="row">8</th>
+                                                    <td>buttonColor</td>
+                                                    <td>Hex color code</td>
+                                                    <td>#FF6609</td>
+                                                    <td>Color used for all buttons and to highlight airport that will be chosen in airport selection dropdown</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">9</th>
+                                                    <td>inputColor</td>
+                                                    <td>Hex color code</td>
+                                                    <td>#FFFFFF</td>
+                                                    <td>Color used as background for inputs</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">10</th>
+                                                    <td>linkColor</td>
+                                                    <td>Hex color code</td>
+                                                    <td>#0089FF</td>
+                                                    <td>Color used for links</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">11</th>
+                                                    <td>headingColor</td>
+                                                    <td>Hex color code</td>
+                                                    <td>#FF6609</td>
+                                                    <td>Color used for headings</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">12</th>
+                                                    <td>defaultTextColor</td>
+                                                    <td>Hex color code</td>
+                                                    <td>#333333</td>
+                                                    <td>Default color for text</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">13</th>
+                                                    <td>errorColor</td>
+                                                    <td>Hex color code</td>
+                                                    <td>#FF0000</td>
+                                                    <td>Color used to indicate errors</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">14</th>
+                                                    <td>serviceDescriptionColor</td>
+                                                    <td>Hex color code</td>
+                                                    <td>#767676</td>
+                                                    <td>Color used for service short description on service list page</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">15</th>
+                                                    <td>labelColor</td>
+                                                    <td>Hex color code</td>
+                                                    <td>#333333</td>
+                                                    <td>Color used for labels</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">16</th>
+                                                    <td>importantColor</td>
+                                                    <td>Hex color code</td>
+                                                    <td>#000000</td>
+                                                    <td>Color used for important information: price, order number and booking code</td>
+                                                </tr>
+                                                
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div><!--//table-responsive-->
+                                    </div>
+                                    
+                                    
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                          
+                            
+                        </div><!--//content-inner-->
+                    </div><!--//doc-content-->
+                    <div class="doc-sidebar">
+                        <nav id="doc-nav">
+                            <ul id="doc-menu" class="nav doc-menu hidden-xs" data-spy="affix">
+                                <li><a class="scrollto" href="#apikeys">API Key</a></li>
+                                <li>
+                                    <a class="scrollto" href="#widget-configuration">Widget configuration</a>
+                                    <ul class="nav doc-sub-menu">
+                                        <li><a class="scrollto" href="#basic-setup">Basic setup</a></li>
+                                        <li><a class="scrollto" href="#extended-setup">Extended setup</a></li>
+                                        <li><a class="scrollto" href="#widget-parameters">Widget Parameters</a></li>
+                                    </ul><!--//nav-->
+                                </li>
+                            </ul><!--//doc-menu-->
+                        </nav>
+                    </div><!--//doc-sidebar-->
+                </div><!--//doc-body-->              
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+        
+    </div><!--//page-wrapper-->
+    
+    <footer id="footer" class="footer text-center">
+        <div class="container">
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright">Designed with <i class="fa fa-heart"></i> by <a href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers</small>
+            
+        </div><!--//container-->
+    </footer><!--//footer-->
+    
+     
+    <!-- Main Javascript -->          
+    <script type="text/javascript" src="assets/plugins/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>  
+    <script type="text/javascript" src="assets/plugins/lightbox/dist/ekko-lightbox.min.js"></script>                                                                 
+    <script type="text/javascript" src="assets/plugins/jquery-match-height/jquery.matchHeight-min.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    
+</body>
+</html>

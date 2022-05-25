@@ -1,0 +1,858 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <title>IziPass Documentation for Developers</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="assets/plugins/lightbox/dist/ekko-lightbox.min.css">
+    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="body-blue">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="index.html">
+                            <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                            <span class="text-highlight">Izi</span><span class="text-bold">Pass</span>
+                        </a>
+                    </h1>
+                </div><!--//branding-->
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">Create order</li>
+                </ol>
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+                <div id="doc-header" class="doc-header text-center">
+                    <h1 class="doc-title"><span aria-hidden="true" class="icon icon_briefcase_alt"></span> Orders API</h1>
+                    <div class="meta"><i class="fa fa-clock-o"></i> Last updated: February 26th, 2020</div>
+                </div><!--//doc-header-->
+                <div class="doc-body">
+                    <div>
+                        <section class="content-inner">
+                            <section id="connection" class="doc-section">
+
+                                <h2 class="section-title">Get Started</h2>
+                                <p>&nbsp;</p>
+
+                                <div class="section-block">
+                                    <ul style="list-style-type: decimal;">
+                                        <li>
+                                            <p><a href="https://izipass.ru/en/Agent/Auth/Registration">Create a IziPass Agent account</a>:</p>
+                                            <p>A unique API access key will be generated automatically after registration and contract finalization. </p>
+                                            <p><b>Public ApiKey</b> - unique ID of your company in IziPass system </p>
+                                            <p><b>Private ApiKey</b> - a secret API access key (not available to anyone except your developer)</p>
+                                        </li>
+                                        <li>
+                                            Make an API request according to the technical documentation.
+                                        </li>
+                                    </ul>
+
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="order-model-json" class="doc-section">
+                                <h2 class="section-title">The following options are required for JSON create orders model generation</h2>
+                                <p>&nbsp;</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="table-responsive">
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2" class="text-uppercase">Request parameters</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">serviceId</th>
+                                                        <td class="small">Service ID. <i style="color: red;">Required</i>, <i>GUID</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">flightNumber</th>
+                                                        <td class="small">Customer’s flight number for the verification of service times, <i>string</i>. <span style="color:red">Required, Min length is 4, max length is 50</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">serviceDate</th>
+                                                        <td class="small">Order date and time in local times of the respective airport. <i style="color: red;">Required</i>, <i>datetime in ISO 8601 notation</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">adultCount</th>
+                                                        <td class="small">Number of adults in the order. <i style="color: red;">Required</i>, <i>integer</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">childCount</th>
+                                                        <td class="small">Number of children in the order. <i style="color: red;">Required</i>, <i>integer</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">infantCount</th>
+                                                        <td class="small">Number of infants in the order. <i style="color: red;">Required</i>, <i>integer</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">comment</th>
+                                                        <td class="small">Additional information provided by the Customer. <i style="color: red;">Optional</i>, <i>string</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">firstName</th>
+                                                        <td class="small">Customer's first name. <i style="color: red;">Required</i>, <i>string</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">lastName</th>
+                                                        <td class="small">Customer's last name. <i style="color: red;">Required</i>, <i>string</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">phone</th>
+                                                        <td class="small">
+                                                            Customer's phone number in international format. <i style="color: red;">Required</i>, <i>string</i><br />
+                                                            Validated according to <a href="https://regexr.com/3oo9i" target="_blank">regex</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">email</th>
+                                                        <td class="small">
+                                                            Customer's email address. <i style="color: red;">Required</i>, <i>string</i><br />
+                                                            Validated according to <a href="https://regexr.com/3nfbm" target="_blank">regex</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">otherPassengersContactDetails</th>
+                                                        <td class="small">Info about other passengers in order, like name, phone, birthday date, etc. <i style="color: red;">Required if passengers more than 1</i>, <i>string</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">culture</th>
+                                                        <td class="small">Country/region and language code to set the language for voucher generation, <i>string</i>. Supported languages: <i>en-US<i>, <i>ru-RU<i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">expectedPrice</th>
+                                                        <td class="small">Expected order price, calculated on your side, <i>decimal</i>. <i style="color: red;">Passing this param means that you want to validate price if the service price was changed. In case of difference between expectedPrice and orderPrice API will return a validation error. Currency for this value depends on your account balance currency.</i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div><!--//table-responsive-->
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" class="text-uppercase">Example:</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                        <pre><code class="language-javascript">{
+  "serviceId": "d8e2b06d-b8c1-89b0-3004-4793fdc08cad",
+  "flightNumber": "PC 751",
+  "serviceDate": "2019-04-19T13:35:00",
+  "adultCount": 2,
+  "childCount": 1,
+  "infantCount": 0,
+  "comment": "Travelling with a dog",
+  "firstName": "John",
+  "lastName": "Doe",
+  "phone": "+1 555-55-55",
+  "email": "john.doe@email.com",
+  "otherPassengersContactDetails": "Jane Doe 04.05.1975 +380504445588, Jill Doe 10.10.2004"
+  "culture": "en-US",
+  "expectedPrice": 4118.50
+}</code></pre>
+
+                                    </div>
+                                </div>
+
+
+                                <p>&nbsp;</p>
+
+                            </section>
+                            <section id="cancel-order-model-json" class="doc-section">
+                                <h2 class="section-title">The following options are required for JSON cancel orders model generation</h2>
+                                <p>&nbsp;</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="table-responsive">
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2" class="text-uppercase">Request parameters</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">orders</th>
+                                                        <td class="small">List of order's <i>GUID</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">publicApiKey</th>
+                                                        <td class="small">Your Public ApiKey, <i>GUID</i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div><!--//table-responsive-->
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" class="text-uppercase">Example:</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                        <pre><code class="language-javascript">{
+   "orders":[
+      "ada94072-a716-950b-7c53-1f6a4c41a3f0",
+      "66aab893-1bc2-6723-c54e-1c63c5ddce4e"
+   ],
+   "publicApiKey":"b96664f7-64ad-4609-a9ed-16585c7768b3"
+}</code></pre>
+
+                                    </div>
+                                </div>
+
+
+                                <p>&nbsp;</p>
+
+                            </section>
+                            
+                            <section id="get-order-voucher-model-json" class="doc-section">
+                                <h2 class="section-title">The following options are required for JSON get order voucher model generation</h2>
+                                <p>&nbsp;</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="table-responsive">
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2" class="text-uppercase">Request parameters</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">orderId</th>
+                                                        <td class="small">IziPass Order Id <i>GUID</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">publicApiKey</th>
+                                                        <td class="small">Your Public ApiKey, <i>GUID</i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div><!--//table-responsive-->
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" class="text-uppercase">Example:</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                        <pre><code class="language-javascript">{
+   "orderId":"ab17e170-8cbb-2bc4-c59c-2866abca0ebc",
+   "publicApiKey":"c0eef780-d326-4e77-b12c-2b6202ce46b8"
+}</code></pre>
+
+                                    </div>
+                                </div>
+
+
+                                <p>&nbsp;</p>
+
+                            </section>
+                            <section id="rules" class="doc-section">
+                                <h2 class="section-title">To perform a request for an order creation and payment please observe the following rules</h2>
+                                <div class="section-block">
+                                    <h6 class="text-uppercase">To call the IziPass API you should pass the <method>data</method> and <method>signature</method> parameters via the <method>POST</method> method, where:</h6>
+                                    <ul>
+                                        <li>
+                                            <p> <method>data</method> - json string with APIs parameters encoded by the function <method>base64</method>, <method>base64_encode( json_string )</method>,</p>
+                                        </li>
+                                        <li>
+                                            <p><method>signature</method> - is the unique signature of each request <method>base64_encode( sha1( private_key + data + private_key) )</method>,</p>
+                                        </li>
+                                        <li>
+                                            <p><method>base64_encode</method> - returns a string encoded by the <method>base64</method>,</p>
+                                        </li>
+                                        <li>
+                                            <p><method>sha1</method> - the hash is returned as a binary string of 20 characters.</p>
+                                        </li>
+                                    </ul>
+                                    <p>&nbsp;</p>
+                                    <h6 class="text-uppercase"><method>data</method> and <method>signature</method> formation, example:</h6>
+
+                                    <p>&nbsp;</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="table-responsive">
+
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="2" class="text-uppercase">Data parameters</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">orders</th>
+                                                            <td class="small">Order list of <i><a href="#order-model-json">JSON create order model</a></i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">publicApiKey</th>
+                                                            <td class="small">Your Public ApiKey, <i>GUID</i></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div><!--//table-responsive-->
+
+                                            <div class="table-responsive">
+                                                <p>&nbsp;</p>
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="2" class="text-uppercase">Order requirements:</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+
+                                                <ul style="list-style-type: decimal;">
+                                                    <li>
+                                                        <p>Each order should contain at list one adult passenger and not more than 50.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>Two infants per each adult max.</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>A future date can only be selected as the date of Service and it must fall under the respective <b>Service</b> work timeframe (preOrderPeriodInMinutes, weekSchedule, unavailabilityPeriods).</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>A positive Agent account balance is required.</p>
+                                                    </li>
+                                                </ul>
+
+                                            </div><!--//table-responsive-->
+
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2" class="text-uppercase">Example:</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                            <pre>json_string = <code class="language-javascript">{
+   "orders":[
+      {
+         "serviceId":"88bb1138-3d82-63b7-7032-d0f490bd978d",
+         "flightNumber":"PC 751",
+         "serviceDate":"2019-04-02T13:35:00",
+         "adultCount":2,
+         "childCount":1,
+         "infantCount":0,
+         "comment":"",
+         "firstName":"John",
+         "lastName":"Doe",
+         "phone":"+1 555-55-55",
+         "email":"john.doe@john.doe",
+         "otherPassengersContactDetails": "Jane Doe 04.05.1975 +380504445588, Jill Doe 10.10.2004",
+         "culture":"en-US"
+      },
+      {
+         "serviceId":"a06d5aca-3380-4e11-99ef-10825c82b6f7",
+         "flightNumber":"FN 111",
+         "serviceDate":"2019-04-15T23:35:00",
+         "adultCount":1,
+         "childCount":0,
+         "infantCount":0,
+         "comment":"",
+         "firstName":"John",
+         "lastName":"Doe",
+         "phone":"+1 555-55-55",
+         "email":"john.doe@john.doe",
+         "culture":"en-US"
+      }
+   ],
+   "publicApiKey":"b96664f7-64ad-4609-a9ed-16585c7768b3"
+}</code></pre>
+
+                                        </div>
+                                    </div>
+                                    <p>&nbsp;</p>
+                                    <h6 class="text-uppercase">Please see below an example of encoding <method>json_string</method> function <method>base64_encode</method>, <method>data</method> received:</h6>
+
+                                    <pre>data = base64_encode( json_string ) = <code>eyJvcmRlcnMiOlt7InNlcnZpY2VJZCI6Ijg4YmIxMTM4LTNkODItNjNiNy03MDMyLWQwZjQ5MGJkOTc4ZCIsImZsaWdodE51bWJlciI6IlBDIDc1MSIsInNlcnZpY2VEYXRlIjoiMjAxOS0wNC0wMlQxMzozNTowMCIsImFkdWx0Q291bnQiOjIsImNoaWxkQ291bnQiOjEsImluZmFudENvdW50IjowLCJjb21tZW50IjoiIiwiZmlyc3ROYW1lIjoiSm9obiIsImxhc3ROYW1lIjoiRG9lIiwicGhvbmUiOiIrMSA1NTUtNTUtNTUiLCJlbWFpbCI6ImpvaG4uZG9lQGpvaG4uZG9lIiwib3RoZXJQYXNzZW5nZXJzQ29udGFjdERldGFpbHMiOiJKYW5lIERvZSAwNC4wNS4xOTc1ICszODA1MDQ0NDU1ODgsIEppbGwgRG9lIDEwLjEwLjIwMDQiLCJjdWx0dXJlIjoiZW4tVVMifSx7InNlcnZpY2VJZCI6ImEwNmQ1YWNhLTMzODAtNGUxMS05OWVmLTEwODI1YzgyYjZmNyIsImZsaWdodE51bWJlciI6IkZOIDExMSIsInNlcnZpY2VEYXRlIjoiMjAxOS0wNC0xNVQyMzozNTowMCIsImFkdWx0Q291bnQiOjEsImNoaWxkQ291bnQiOjAsImluZmFudENvdW50IjowLCJjb21tZW50IjoiIiwiZmlyc3ROYW1lIjoiSm9obiIsImxhc3ROYW1lIjoiRG9lIiwicGhvbmUiOiIrMSA1NTUtNTUtNTUiLCJlbWFpbCI6ImpvaG4uZG9lQGpvaG4uZG9lIiwiY3VsdHVyZSI6ImVuLVVTIn1dLCJwdWJsaWNBcGlLZXkiOiJiOTY2NjRmNy02NGFkLTQ2MDktYTllZC0xNjU4NWM3NzY4YjMifQ==</code></pre>
+
+                                    <p>&nbsp;</p>
+                                    <h6 class="text-uppercase">Please see below an example of <method>signature</method> generation, a <method>sign_string</method> is generated by concatenating  <method>private_key + data + private_key</method>:</h6>
+
+                                    <pre>sign_string = private_key + data + private_key = <code><span style="color: rgb(255,102,10) !important">0s1a2b3c4v5b6n7m8l9k0s1a2b3c4v5b6n7m8l9k</span>eyJvcmRlcnMiOlt7InNlcnZpY2VJZCI6Ijg4YmIxMTM4LTNkODItNjNiNy03MDMyLWQwZjQ5MGJkOTc4ZCIsImZsaWdodE51bWJlciI6IlBDIDc1MSIsInNlcnZpY2VEYXRlIjoiMjAxOS0wNC0wMlQxMzozNTowMCIsImFkdWx0Q291bnQiOjIsImNoaWxkQ291bnQiOjEsImluZmFudENvdW50IjowLCJjb21tZW50IjoiIiwiZmlyc3ROYW1lIjoiSm9obiIsImxhc3ROYW1lIjoiRG9lIiwicGhvbmUiOiIrMSA1NTUtNTUtNTUiLCJlbWFpbCI6ImpvaG4uZG9lQGpvaG4uZG9lIiwib3RoZXJQYXNzZW5nZXJzQ29udGFjdERldGFpbHMiOiJKYW5lIERvZSAwNC4wNS4xOTc1ICszODA1MDQ0NDU1ODgsIEppbGwgRG9lIDEwLjEwLjIwMDQiLCJjdWx0dXJlIjoiZW4tVVMifSx7InNlcnZpY2VJZCI6ImEwNmQ1YWNhLTMzODAtNGUxMS05OWVmLTEwODI1YzgyYjZmNyIsImZsaWdodE51bWJlciI6IkZOIDExMSIsInNlcnZpY2VEYXRlIjoiMjAxOS0wNC0xNVQyMzozNTowMCIsImFkdWx0Q291bnQiOjEsImNoaWxkQ291bnQiOjAsImluZmFudENvdW50IjowLCJjb21tZW50IjoiIiwiZmlyc3ROYW1lIjoiSm9obiIsImxhc3ROYW1lIjoiRG9lIiwicGhvbmUiOiIrMSA1NTUtNTUtNTUiLCJlbWFpbCI6ImpvaG4uZG9lQGpvaG4uZG9lIiwiY3VsdHVyZSI6ImVuLVVTIn1dLCJwdWJsaWNBcGlLZXkiOiJiOTY2NjRmNy02NGFkLTQ2MDktYTllZC0xNjU4NWM3NzY4YjMifQ==<span style="color: rgb(255,102,10) !important">0s1a2b3c4v5b6n7m8l9k0s1a2b3c4v5b6n7m8l9k</span></code></pre>
+                                    <p>&nbsp;</p>
+
+                                    <h6 class="text-uppercase">As a result of the <method>base64_encode( sha1( sign_string) )</method> functions application we get the following string:</h6>
+
+                                    <pre>signature = base64_encode( sha1( sign_string) ) = <code>09Ab3MJ6euP1tI1IBiHBL3sA9e0=</code></pre>
+
+
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="create-orders-request" class="doc-section">
+                                <h2 class="section-title">Orders Creation request</h2>
+                                <h6 class="text-uppercase">API endpoint</h6>
+
+                                <p><code>POST /api/v1/orders</code></p>
+                                <p>&nbsp;</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2" class="text-uppercase">Request Headers</th>                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                    <th width="30%" class="text-right">Allow-Cache</th>
+                                                    <td class="small">Response cache timespan in seconds, <i>int from <b>1</b> to <b>86400</b></i>. <i style="color: red;">Optional header</i></td>
+                                                </tr>
+                                            </table>
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2" class="text-uppercase">Request parameters</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">data</th>
+                                                        <td class="small">Generated <method>data</method>, <i>string</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">signature</th>
+                                                        <td class="small">Generated <method>signature</method>, <i>string</i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div><!--//table-responsive-->
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" class="text-uppercase">Example:</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                        <pre><code class="language-bash">curl "https://izipass.ru/api/v1/orders"
+    -X POST
+    -H "Authorization: Bearer {access_token}"
+    -H "Allow-Cache: {seconds}"</code></pre>
+                                        <p>&nbsp;</p>
+
+                                        <pre><code class="language-javascript">{
+   "data":"eyJvcmRlcnMiOlt7InNlcnZpY2VJZCI6Ijg4YmIxMTM4LTNkODItNjNiNy03MDMyLWQwZjQ5MGJkOTc4ZCIsImZsaWdodE51bWJlciI6IlBDIDc1MSIsInNlcnZpY2VEYXRlIjoiMjAxOS0wNC0wMlQxMzozNTowMCIsImFkdWx0Q291bnQiOjEsImNoaWxkQ291bnQiOjAsImluZmFudENvdW50IjowLCJjb21tZW50IjoiIiwiZmlyc3ROYW1lIjoiSm9obiIsImxhc3ROYW1lIjoiRG9lIiwicGhvbmUiOiIrMSA1NTUtNTUtNTUiLCJlbWFpbCI6ImpvaG4uZG9lQGpvaG4uZG9lIiwiY3VsdHVyZSI6ImVuLVVTIn0seyJzZXJ2aWNlSWQiOiI4OGJiMTEzOC0zZDgyLTYzYjctNzAzMi1kMGY0OTBiZDk3OGQiLCJmbGlnaHROdW1iZXIiOiJQQyA3NTEiLCJzZXJ2aWNlRGF0ZSI6IjIwMTktMDQtMDJUMTM6MzU6MDAiLCJhZHVsdENvdW50IjowLCJjaGlsZENvdW50IjowLCJpbmZhbnRDb3VudCI6MSwiY29tbWVudCI6IiIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsInBob25lIjoiKzEgNTU1LTU1LTU1IiwiZW1haWwiOiJqb2huLmRvZUBqb2huLmRvZSIsImN1bHR1cmUiOiJlbi1VUyJ9LHsic2VydmljZUlkIjoiYTA2ZDVhY2EtMzM4MC00ZTExLTk5ZWYtMTA4MjVjODJiNmY3IiwiZmxpZ2h0TnVtYmVyIjoiRk4gMTExIiwic2VydmljZURhdGUiOiIyMDE5LTA0LTE1VDIzOjM1OjAwIiwiYWR1bHRDb3VudCI6MCwiY2hpbGRDb3VudCI6MSwiaW5mYW50Q291bnQiOjAsImNvbW1lbnQiOiIiLCJmaXJzdE5hbWUiOiJKb2huIiwibGFzdE5hbWUiOiJEb2UiLCJwaG9uZSI6IisxIDU1NS01NS01NSIsImVtYWlsIjoiam9obi5kb2VAam9obi5kb2UiLCJjdWx0dXJlIjoiZW4tVVMifSx7InNlcnZpY2VJZCI6ImEwNmQ1YWNhLTMzODAtNGUxMS05OWVmLTEwODI1YzgyYjZmNyIsImZsaWdodE51bWJlciI6IkZOIDExMSIsInNlcnZpY2VEYXRlIjoiMjAxOS0wNC0xNVQyMzozNTowMCIsImFkdWx0Q291bnQiOjEsImNoaWxkQ291bnQiOjAsImluZmFudENvdW50IjowLCJjb21tZW50IjoiIiwiZmlyc3ROYW1lIjoiSm9obiIsImxhc3ROYW1lIjoiRG9lIiwicGhvbmUiOiIrMSA1NTUtNTUtNTUiLCJlbWFpbCI6ImpvaG4uZG9lQGpvaG4uZG9lIiwiY3VsdHVyZSI6ImVuLVVTIn1dLCJwdWJsaWNBcGlLZXkiOiJiOTY2NjRmNy02NGFkLTQ2MDktYTllZC0xNjU4NWM3NzY4YjMifQ==",
+   "signature":"09Ab3MJ6euP1tI1IBiHBL3sA9e0="
+}</code></pre>
+
+                                    </div>
+                                </div>
+                                <p>&nbsp;</p>
+                            </section>
+                            <section id="create-orders-response" class="doc-section">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="table-responsive">
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2" class="text-uppercase">Response parameters</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">iziPassOrderId</th>
+                                                        <td class="small">Order id in IziPass system, <i>Guid</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">passengerName</th>
+                                                        <td class="small">Passenger name, <i>string</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">bookingCode</th>
+                                                        <td class="small">Booking code for QR generation, <i>string</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">orderNumber</th>
+                                                        <td class="small">Order number for QR generation, <i>int</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">airportIataCode</th>
+                                                        <td class="small">Airport Service provider IATA code, <i>string</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">serviceId</th>
+                                                        <td class="small">Ordered service ID, <i>GUID</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">serviceName</th>
+                                                        <td class="small">Localized service name, <i>string</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">serviceDateLocal</th>
+                                                        <td class="small">Order date and time in local times of the respective airport, <i>datetime in ISO 8601 notation</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">price</th>
+                                                        <td class="small">Total order amount in your balance currency, <i>decimal</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">errorMessage</th>
+                                                        <td class="small">Error message if something went wrong, <i>string</i>.<a href="api.html#errors" target="_blank"> Possible errors list</a>.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div><!--//table-responsive-->
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" class="text-uppercase">Example:</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+
+                                        <pre><code class="language-javascript">{
+    "orders": [
+        {
+            "iziPassOrderId": "85714717-0713-4c51-d63d-b89a16110f7d",
+            "passengerName": "John Doe",
+            "bookingCode": "EFTLSB",
+            "orderNumber": 1244,
+            "airportIataCode": "SVX",
+            "serviceId": "88bb1138-3d82-63b7-7032-d0f490bd978d",
+            "serviceName": "Business Lounge",
+            "serviceDateLocal": "2019-04-02T13:35:00",
+            "price": 640.00,
+            "errorMessage": null
+        },
+        {
+            "iziPassOrderId": "07b091a3-ffde-ef89-f319-b88360b30f83",
+            "passengerName": "John Doe",
+            "bookingCode": "UVFSFS",
+            "orderNumber": 1246,
+            "airportIataCode": "SVX",
+            "serviceId": "a06d5aca-3380-4e11-99ef-10825c82b6f7",
+            "serviceName": "Business Lounge 2",
+            "serviceDateLocal": "2019-04-15T23:35:00",
+            "price": 720.00,
+            "errorMessage": null
+        }
+    ]
+}</code></pre>
+                                    </div>
+                                </div>
+                                <p>&nbsp;</p>
+                            </section>
+                            <section id="voucher" class="doc-section">
+
+                                <h2 class="section-title">Voucher generation</h2>
+                                <div class="section-block">
+                                            <p>After success response from /api/orders you need:</p>
+                                            <ul>
+                                                <li>
+                                                    <p>Download voucher from <a href="#order-voucher-request">/api/v1/orders/voucher</a></p>
+                                                </li>
+                                                <li>
+                                                    <p>Send voucher to customer or add it into your voucher</p>
+                                                </li>
+                                                <li>
+                                                    <p>Congratulations! All is ready.</p>
+                                                </li>
+                                            </ul>
+
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            <section id="cancel-orders-request" class="doc-section">
+                                <h2 class="section-title">Cancel orders request</h2>
+                                <h6 class="text-uppercase">API endpoint</h6>
+
+                                <p><code>POST /api/v1/orders/cancel</code></p>
+                                <p>&nbsp;</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="table-responsive">
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2" class="text-uppercase">Request parameters</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">data</th>
+                                                        <td class="small">Generated <method>data</method> from <i><a href="#cancel-order-model-json">JSON cancel order model</a></i>, <i>string</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">signature</th>
+                                                        <td class="small">Generated <method>signature</method>, <i>string</i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div><!--//table-responsive-->
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" class="text-uppercase">Example:</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                        <pre><code class="language-bash">curl "https://izipass.ru/api/v1/orders/cancel"
+    -X POST
+    -H "Authorization: Bearer {access_token}"</code></pre>
+                                        <p>&nbsp;</p>
+
+                                        <pre><code class="language-javascript">{
+   "data":"ewogICAib3JkZXJzIjpbCiAgICAgICI4NTcxNDcxNy0wNzEzLTRjNTEtZDYzZC1iODlhMTYxMTBmN2QiLAogICAgICAiMWM4OTk0YTMtODQ2OC02NTZhLTdkNjQtYjg1ODZlYmEwZjgwIiwKICAgICAgIjA3YjA5MWEzLWZmZGUtZWY4OS1mMzE5LWI4ODM2MGIzMGY4MyIsCiAgICAgICI1M2Y4YjVmZi01MWUzLTMxZWYtZDRkZC1iOGIxMGUxMTBmODYiLAogICBdLAogICAicHVibGljQXBpS2V5IjoiYjk2NjY0ZjctNjRhZC00NjA5LWE5ZWQtMTY1ODVjNzc2OGIzIgp9",
+   "signature":"mVk0KNSbW1YhGUIZnLaBuUk12Rk="
+}</code></pre>
+
+                                    </div>
+                                </div>
+                                <p>&nbsp;</p>
+                            </section>
+                            <section id="create-orders-response" class="doc-section">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="table-responsive">
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2" class="text-uppercase">Response parameters</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">iziPassOrderId</th>
+                                                        <td class="small">Order id in IziPass system, <i>Guid</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">refundAmount</th>
+                                                        <td class="small">Refund amount, in currency of your Agent's balance account, <i>decimal</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">errorMessage</th>
+                                                        <td class="small">Error message if something went wrong, <i>string</i>.<a href="api.html#errors" target="_blank"> Possible errors list</a>.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">totalRefundAmount</th>
+                                                        <td class="small">Total refund amount, in currency of your Agent's balance account, <i>decimal</i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div><!--//table-responsive-->
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" class="text-uppercase">Example:</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+
+                                        <pre><code class="language-javascript">{
+    "orders": [
+        {
+            "iziPassOrderId": "85714717-0713-4c51-d63d-b89a16110f7d",
+            "refundAmount": 2307.75,
+            "errorMessage": null
+        },
+        {
+            "iziPassOrderId": "07b091a3-ffde-ef89-f319-b88360b30f83",
+            "refundAmount": 923.1,
+            "errorMessage": null
+        }
+    ],
+    "totalRefundAmount": 3230.85
+}</code></pre>
+                                    </div>
+                                </div>
+                                <p>&nbsp;</p>
+                            </section>
+
+                            <section id="order-voucher-request" class="doc-section">
+                                <h2 class="section-title">Get order voucher request</h2>
+                                <h6 class="text-uppercase">API endpoint</h6>
+
+                                <p><code>POST /api/v1/orders/voucher</code></p>
+                                <p>&nbsp;</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="table-responsive">
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2" class="text-uppercase">Request parameters</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">data</th>
+                                                        <td class="small">Generated <method>data</method> from <i><a href="#get-order-voucher-model-json">JSON Get order voucher model</a></i>, <i>string</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">signature</th>
+                                                        <td class="small">Generated <method>signature</method>, <i>string</i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div><!--//table-responsive-->
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" class="text-uppercase">Example:</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                        <pre><code class="language-bash">curl "https://izipass.ru/api/v1/orders/voucher"
+    -X POST
+    -H "Authorization: Bearer {access_token}"</code></pre>
+                                        <p>&nbsp;</p>
+
+                                        <pre><code class="language-javascript">{
+   "data":"eyJPcmRlcklkIjoiYWIxN2UxNzAtOGNiYi0yYmM0LWM1OWMtMjg2NmFiY2EwZWJjIiwiUHVibGljQXBpS2V5IjoiYzBlZWY3ODAtZDMyNi00ZTc3LWIxMmMtMmI2MjAyY2U0NmI4IiwiQ3VsdHVyZSI6ImVuLVVTIn0=",
+   "signature":"zMG3UyXR6zhYObeJVTt0yRkET2I="
+}</code></pre>
+
+                                    </div>
+                                </div>
+                                <p>&nbsp;</p>
+                            </section>
+                            <section id="create-orders-response" class="doc-section">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="table-responsive">
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2" class="text-uppercase">Response parameters</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">pdfByteArrayBase64</th>
+                                                        <td class="small">Byte array of PDF voucher in base64 format, <i>string</i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div><!--//table-responsive-->
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" class="text-uppercase">Example:</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+
+                                        <pre><code class="language-javascript">{
+    "pdfByteArrayBase64": "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OTk5ICAxNjcuMzYwMDAwIF0KL0JvcmRlciBbMCAwIDBdCi9BIDw8Ci9UeXBlIC9BY3Rpb24KL1MgL1VSSQovVVJJICh0ZWw6KQo+Pgo+PgplbmRvYmoKMjMgMCBvYmoKPDwKL1R5cGUgL0Fubm90Ci9TdWJ0eXBlIC9MaW5rCi9SZWN0IFsyOTAuODc5OTk5ICAxNTcuNzYwMDAwICAzNjkuOTU5OTk5ICAxNjcuMzYwMDAwIF0KL0JvcmRlciBbMCAwIDBdCi9BIDw8Ci9UeXBlIC9BY3Rpb24KL1MgL1VSSQovVVJJIChtYWlsdG86KQo+Pgo+PgplbmRvYmoKMjQgMCBvYmoKPDwKL1R5cGUgL0NhdGFsb2cKL1BhZ2VzIDIgMCBSCj4+CmVuZG9iago1IDAgb2JqCjw8Ci9UeXBlIC9QYWdlCi9QYXJlbnQgMiAwIFIKL0NvbnRlbnRzIDI1IDAgUgovUmVzb3VyY2VzIDI3IDAgUgovQW5ub3RzIDI4IDAgUgovTWVkaWFCb3ggWzAgMCA1OTUgODQyXQo+PgplbmRvYmoKMjcgMCBvYmoKPDwKL0NvbG9yU3BhY2UgPDwKL1BDU3AgNCAwIFIKL0NTcCAvRGV2aWNlUkdCCi9DU3BnIC9EZXZpY2VHcmF5Cj4+Ci9FeHRHU3RhdGUgPDwKL0dTYSAzIDAgUgo+PgovUGF0dGVybiA8PAo+PgovRm9udCA8PAovRjEwIDEwIDAgUgovRjEzIDEzIDAgUgo+PgovWE9iamVjdCA8PAovSW04IDggMCBSCi9JbTExIDExIDAgUgovSW0xNiAxNiAwIFIKL0ltMjAgMjAgMCBSCj4+Cj4+CmVuZG9iagoyOCAwIG9iagpbIDIyIDAgUiAyMyAwIFIgXQplbmRvYmoKMjUgMCBvYmoKPDwKL0xlbmd0aCAyNiAwIFIKL0ZpbHRlciAvRmxhdGVEZWNvZGUKPj4Kc3RyZWFtCnic5VxLb+M2EL77V+i8QBxy+AaKAptX0R4KBBugh6KHItttsdhsu91D/34pkZJG+iiZdpwmcRMgtibkcDgz33A4pH3+3btfm9+/NueX7/5q7vPr5buN2EoS6adpf8+mBK+puX/YfGm+bG43t/Fv+/pl03NJfb7ef96cJ/6bRHl3+WN8909DzQ/x6WPz8y/x5X1m0TZ42Ohg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Y3JpcHRvciAyOSAwIFIKL0NJRFRvR0lETWFwIC9JZGVudGl0eQovVyBbMCBbNDI3IDUxMSA0NTkgNDY3IDQyOSAzMzIgNDQ5IDMzOSA0NjcgMjUyIDI0NCAzNDYgMzE0IDQyMSAxMzcgNDE5IDQ2NiAyNTcgNDc2IDQyMyA2MzYgNDY3IDU1OSA0NzcgNDg3IDcwOSA0NzYgNDQ4IDQzMSA0OTcgNTc4IDQ4MyA2MDYgNDc2IDMxNiA1NzcgNTAyIDIzOCA0NDggNDQ4IDQ0OCA0NDggNDQ4IDMxNCA0NDggNTA0IDQ5NiA0NDkgMzE0IDUyNCAzMTQgNDExIDQ3NiA0NDggNDQ4IDQ0OCA0NDggNDQ4IDQ0OCA2NTggMzE0IF0KXQo+PgplbmRvYmoKMzIgMCBvYmoKPDwgL0xlbmd0aCA3ODQgPj4Kc3RyZWFtCi9DSURJbml0IC9Qcm9jU2V0IGZpbmRyZXNvdXJjZSBiZWdpbgoxMiBkaWN0IGJlZ2luCmJlZ2luY21hcAovQ0lEU3lzdGVtSW5mbyA8PCAvUmVnaXN0cnkgKEFkb2JlKSAvT3JkZXJpbmcgKFVDUykgL1N1cHBsZW1lbnQgMCA+PiBkZWYKL0NNYXBOYW1lIC9BZG9iZS1JZGVudGl0eS1VQ1MgZGVmCi9DTWFwVHlwZSAyIGRlZgoxIGJlZ2luY29kZXNwYWNlcmFuZ2UKPDAwMDA+IDxGRkZGPgplbmRjb2Rlc3BhY2VyYW5nZQoyIGJlZ2luYmZyYW5nZQo8MDAwMD4gPDAwMDA+IDwwMDAwPgo8MDAwMT4gPDAwM0M+IFs8MDA0Mz4gPDAwNkY+IDwwMDZFPiA8MDA2Nz4gPDAwNzI+IDwwMDYxPiA8MDA3ND4gPDAwNzU+IDwwMDZDPiA8MDA2OT4gPDAwNzM+IDwwMDJDPiA8MDA3OT4gPDAwMjc+IDwwMDc2PiA8MDA2NT4gPDAwMjA+IDwwMDY0PiA8MDA2Mz4gPDAwNzc+IDwwMDY4PiA8MDA0OD4gPDAwNTA+IDwwMDU5PiA8MDA2RD4gPDAwNjI+IDwwMDMxPiA8MDA2Qj4gPDAwNTI+IDwwMDQ3PiA8MDA0Mj4gPDAwNEQ+IDwwMDcwPiA8MDA2Nj4gPDAwNTE+IDwwMDU2PiA8MDA0OT4gPDAwMzA+IDwwMDMyPiA8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IGRlZgovQ01hcE5hbWUgL0Fkb2JlLUlkZW50aXR5LVVDUyBkZWYKL0NNYXBUeXBlIDIgZGVmCjEgYmVnaW5jb2Rlc3BhY2VyYW5nZQo8MDAwMD4gPEZGRkY+CmVuZGNvZGVzcGFjZXJhbmdlCjIgYmVnaW5iZnJhbmdlCjwwMDAwPiA8MDAwMD4gPDAwMDA+CjwwMDAxPiA8MDAyOD4gWzwwMDQxPiA8MDA2ND4gPDAwNzU+IDwwMDZDPiA8MDA3ND4gPDAwNzM+IDwwMDNBPiA8MDAyMD4gPDAwMzI+IDwwMDJDPiA8MDA0Mz4gPDAwNjg+IDwwMDY5PiA8MDA3Mj4gPDAwNjU+IDwwMDZFPiA8MDAzMT4gPDAwNDk+IDwwMDY2PiA8MDA2MT4gPDAwNTQ+IDwwMDMzPiA8MDA0ND4gPDAwNkY+IDwwMDZEPiA8MDA2Mz4gPDAwMkY+IDwwMDcwPiA8MDA0Nz4gPDAwNTM+IDwwMDU2PiA8MDA1MD4gPDAwMkI+IDwwMDM4PiA8MDAzMD4gPDAwMzQ+IDwwMDM1PiA8MDAzNj4gPDAwMzc+IDwwMDM5PiBdCmVuZGJmcmFuZ2UKZW5kY21hcApDTWFwTmFtZSBjdXJyZW50ZGljdCAvQ01hcCBkZWZpbmVyZXNvdXJjZSBwb3AKZW5kCmVuZAoKZW5kc3RyZWFtCmVuZG9iagoxMyAwIG9iago8PCAvVHlwZSAvRm9udAovU3VidHlwZSAvVHlwZTAKL0Jhc2VGb250IC9UcmVidWNoZXRNU0JvbGQKL0VuY29kaW5nIC9JZGVudGl0eS1ICi9EZXNjZW5kYW50Rm9udHMgWzM2IDAgUl0KL1RvVW5pY29kZSAzNyAwIFI+PgplbmRvYmoKMiAwIG9iago8PAovVHlwZSAvUGFnZXMKL0tpZHMgClsKNSAwIFIKXQovQ291bnQgMQovUHJvY1NldCBbL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUNdCj4+CmVuZG9iagp4cmVmCjAgMzkKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDA5IDAwMDAwIG4gCjAwMDAwMzAzNzUgMDAwMDAgbiAKMDAwMDAwMDE2MyAwMDAwMCBuIAowMDAwMDAwMjU4IDAwMDAwIG4gCjAwMDAwMTI5MDUgMDAwMDAgbiAKMDAwMDAwMDI5NSAwMDAwMCBuIAowMDAwMDAzODI4IDAwMDAwIG4gCjAwMDAwMDM4NDggMDAwMDAgbiAKMDAwMDAwNjk1OCAwMDAwMCBuIAowMDAwMDIzNjM5IDAwMDAwIG4gCjAwMDAwMDY5NzggMDAwMDAgbiAKMDAwMDAwOTExNiAwMDAwMCBuIAowMDAwMDMwMjMzIDAwMDAwIG4gCjAwMDAwMDkxMzcgMDAwMDAgbiAKMDAwMDAwOTk2MiAwMDAwMCBuIAowMDAwMDA5OTgyIDAwMDAwIG4gCjAwMDAwMTA4NjAgMDAwMDAgbiAKMDAwMDAxMDg4MCAwMDAwMCBuIAowMDAwMDExNjY0IDAwMDAwIG4gCjAwMDAwMTE2ODQgMDAwMDAgbiAKMDAwMDAxMjUwMiAwMDAwMCBuIAowMDAwMDEyNTIyIDAwMDAwIG4gCjAwMDAwMTI2ODcgMDAwMDAgbiAKMDAwMDAxMjg1NSAwMDAwMCBuIAowMDAwMDEzMjkwIDAwMDAwIG4gCjAwMDAwMTU3NTQgMDAwMDAgbiAKMDAwMDAxMzAyNiAwMDAwMCBuIAowMDAwMDEzMjU2IDAwMDAwIG4gCjAwMDAwMTU3NzUgMDAwMDAgbiAKMDAwMDAxNjAzNCAwMDAwMCBuIAowMDAwMDIyMzQxIDAwMDAwIG4gCjAwMDAwMjI4MDMgMDAwMDAgbiAKMDAwMDAyMjMyMCAwMDAwMCBuIAowMDAwMDIzNzg0IDAwMDAwIG4gCjAwMDAwMjQwNDAgMDAwMDAgbiAKMDAwMDAyOTE1OCAwMDAwMCBuIAowMDAwMDI5NTM3IDAwMDAwIG4gCjAwMDAwMjkxMzcgMDAwMDAgbiAKdHJhaWxlcgo8PAovU2l6ZSAzOQovSW5mbyAxIDAgUgovUm9vdCAyNCAwIFIKPj4Kc3RhcnR4cmVmCjMwNDczCiUlRU9GCg=="
+}</code></pre>
+                                    </div>
+                                </div>
+                                <p>&nbsp;</p>
+                            </section>
+                        </section>
+                    </div><!--//doc-content-->
+                </div><!--//doc-body-->
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+    </div><!--//page-wrapper-->
+
+    <footer id="footer" class="footer text-center">
+        <div class="container">
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright">Created by <a href="https://izipass.ru" target="_blank">IziPass</a>, </small>
+            <small class="copyright">Designed by <a href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a></small>
+
+        </div><!--//container-->
+    </footer><!--//footer-->
+    <!-- Main Javascript -->
+    <script type="text/javascript" src="assets/plugins/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/lightbox/dist/ekko-lightbox.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery-match-height/jquery.matchHeight-min.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+
+</body>
+</html>

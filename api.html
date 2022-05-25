@@ -1,0 +1,2344 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>IziPass Documentation for Developers</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">    
+    <link rel="shortcut icon" href="favicon.ico">  
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
+    
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="assets/plugins/lightbox/dist/ekko-lightbox.min.css">
+    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+</head> 
+
+<body class="body-orange">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="index.html">
+                            <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                            <span class="text-highlight">Izi</span><span class="text-bold">Pass</span>
+                        </a>
+                    </h1>
+                </div><!--//branding-->
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">Services API</li>
+                </ol>
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+                <div id="doc-header" class="doc-header text-center">
+                    <h1 class="doc-title"><span aria-hidden="true" class="icon icon_datareport_alt"></span> Services API</h1>
+                    <div class="meta"><i class="fa fa-clock-o"></i> Last updated: September 10th, 2020</div>
+                </div><!--//doc-header-->
+                <div class="doc-body">
+                    <div class="doc-content">
+                        <div class="content-inner">
+                            <section id="endpoints" class="doc-section">
+                                <h2 class="section-title">Endpoints</h2>
+                                <div class="section-block">
+                                    <p>
+                                        <ul>
+                                            <li>
+                                                Base address - <a href="https://izipass.ru/api/v1" target="_blank">https://izipass.ru/api/v1</a>
+                                            </li>
+                                            <li>
+                                                Test environment address - <a href="https://izipass-web-test.azurewebsites.net/api/v1" target="_blank">https://izipass-web-test.azurewebsites.net/api/v1</a>
+                                            </li>
+                                        </ul>
+                                    </p>
+                                     
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            
+                            <section id="authentication" class="doc-section">
+                                
+                                <h2 class="section-title">Authentication</h2>
+                                <p>&nbsp;</p>
+                                    
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <p>
+                                            IziPass API uses token-based authentication. All requests require authentication token to be set in headers:
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <pre><code class="language-bash">curl "https://izipass.ru/api/v1/v1.0?{request paramenters}"
+  -X GET
+  -H "Authorization: Bearer {access token}"
+  -H "Accept-Language: en"</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    
+                                    
+                                     
+                                </div><!--//section-block-->
+                                
+                                <div class="section-block" id="get-access-token">
+                                    <h3 class="block-title">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                        Get access token
+                                    </h3>
+                                    
+                                    <p>&nbsp;</p>
+                                    <h6 class="text-uppercase">API endpoint</h6>
+                                    
+                                    <p><code>POST /api/v1/token</code></p>
+                                    
+                                    <p>&nbsp;</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2" class="text-uppercase">Request Headers</th>                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                    <th width="30%" class="text-right">Content-Type</th>
+                                                    <td class="small">"application/json"</td>
+                                                </tr>
+                                            </table>
+
+
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th colspan="2" class="text-uppercase">Request body</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">api_key</th>
+                                                        <td class="small">API Key obtained at your <a href="https://izipass.ru/#loginAgent" target="_blank">IziPass agent account</a>, <i>string</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">client_type</th>
+                                                        <td class="small">"ThirdParty"</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">grant_type</th>
+                                                        <td class="small">"client_credentials"</td>
+                                                    </tr>                                                
+                                                </tbody>
+                                            </table>
+                                        </div><!--//table-responsive-->
+                                            
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <pre><code class="language-bash">curl "https://izipass.ru/api/v1/token"
+  -X POST 
+  -H "Content-Type: application/json"
+                                            </code></pre>
+					    <pre><code class="language-javascript">{
+     "client_type" : "ThirdParty",
+     "grant_type" : "client_credentials",
+     "api_key" : "c0eef780-d326-4e77-b12c-2b6202ce46b8"
+}</code></pre>
+					                    </div>
+                                    </div>                                   
+                                    <p>&nbsp;</p>
+
+									<div class="row">
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<div class="table-responsive">
+												<table class="table">
+													<thead>
+														<tr>
+															<th colspan="2" class="text-uppercase">Response parameters</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<th width="30%" class="text-right">access_token</th>
+															<td class="small">Token to be added to all API requests, <i>string</i></td>
+														</tr>
+														<tr>
+															<th width="30%" class="text-right">token_type</th>
+															<td class="small">"bearer"</td>
+														</tr>
+														<tr>
+															<th width="30%" class="text-right">expires_in</th>
+															<td class="small">Access token expiration time in seconds, <i>integer</i></td>
+														</tr>
+													</tbody>
+												</table>
+											</div><!--//table-responsive-->
+										</div>
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											 <pre><code class="language-javascript">{
+    "access_token" : "nf1GpTxaaIpPgW4NGfL7ZpXOmXxFoPOaxjWwiGGMM5-ZdlGIE2Y0FlCPyVwHO1itw9tehwmAiQy3uIYi6zkodIvGWbKOEDOsMQyPZJFkgb3FARLMytLJiLpB9nHHSEJdtfa9tgpC-noD5cKHwmb8sVuSHfSf295nWiMvsEAN0Z310JmudOhNkMXhnxB6IhwGEnUiBmjVHcRGhentP9wwXI-2t1D7Zegp-0v2-_uC0ISwqmZnMvvBcN3NXUfeyXv7DMpi6Ja4EXy4BHgu01ch_4-X3I78UupsNIjWj_LqcFbm_6YoZP2XVkT9-BfkB_XIaGl014ZRghZ2xcrNBj9C4Lta_NGLlL8hKIcequg33U4yg3Jqu7ejTuMy6RwX6KFJNzAknrdfmOcV9lSTNboAf82G28zt3Kpb_vLS6xgdQKC64Kgy_0DBEM1arDRJ6N5dNq6Erm_Y5pxajI8aC2hMUp_JW2e9lhvvaaYLbGmTmABvxYLgHawMxgT4rpIQSIreo4TopFLUbQndP-RXaBzdOQ",
+    "token_type" : "bearer",
+    "expires_in" : 1799
+}</code></pre>
+										</div>
+									</div>
+								</div><!--//"Get access token" section-block-->                               
+
+								<div class="section-block" id="get-access-token-mobile" style="display: none">
+									<h3 class="block-title">
+										<i class="fa fa-cog" aria-hidden="true"></i>
+										Get access token for Mobile client (Service manager)
+									</h3>
+									
+									<p>&nbsp;</p>
+									<h6 class="text-uppercase">API endpoint</h6>
+									
+									<p><code>POST /api/v1/token</code></p>
+									
+									<p>&nbsp;</p>
+									<div class="row">
+										<div class="col-md-6 col-sm-6 col-xs-12">                                               
+										<div class="table-responsive">
+											<table class="table">
+												<thead>
+													<tr>
+														<th colspan="2" class="text-uppercase">Request Headers</th>                                                        
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<th width="30%" class="text-right">Content-Type</th>
+														<td class="small">"application/json"</td>
+													</tr>
+												</tbody>
+											</table>
+											<table class="table">
+												<thead>
+													<tr>
+														<th colspan="2" class="text-uppercase">Request body</th>
+													</tr>
+												</thead>
+												<tbody>   
+													<tr>
+														<th width="30%" class="text-right">username</th>
+														<td class="small">Service manager email, i.e. "manager@some.airport"</td>
+													</tr>
+													<tr>
+														<th width="30%" class="text-right">password</th>
+														<td class="small">Service manager password</td>
+													</tr>
+													<tr>
+														<th width="30%" class="text-right">client_secret</th>
+														<td class="small">Private value known only to the application and the API</td>                                                       
+													</tr>
+													<tr>
+														<th width="30%" class="text-right">client_type</th>
+														<td class="small">"ServiceManagerMobile"</td>
+													</tr>
+													<tr>
+														<th width="30%" class="text-right">grant_type</th>
+														<td class="small">"password"</td>
+													</tr>                                                
+												</tbody>
+											</table>
+										</div><!--//table-responsive-->
+											
+										</div>
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<pre><code class="language-bash">curl "https://izipass.ru/api/v1/token"
+  -X POST 
+  -H "Content-Type: application/json"
+											</code></pre>
+					<pre><code class="language-javascript">{
+	"client_type" : "ServiceManagerMobile",
+	"grant_type" : "password",
+	"username" : "manager@some.airport",
+	"password" : "manager_password",
+	"client_secret" : "some_very_secret_value"
+}</code></pre>
+										</div>
+									</div>                                   
+									<p>&nbsp;</p>
+                                        
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="2" class="text-uppercase">Response parameters</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">access_token</th>
+                                                            <td class="small">Token to be added to all API requests</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">token_type</th>
+                                                            <td class="small">"bearer"</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">expires_in</th>
+                                                            <td class="small">Access token expiration time, 1799 seconds</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">refresh_token</th>
+                                                            <td class="small">A token for <a href="#refresh-access-token">Refresh token</a> request</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div><!--//table-responsive-->
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                             <pre><code class="language-javascript">{
+    "access_token" : "nf1GpTxaaIpPgW4NGfL7ZpXOmXxFoPOaxjWwiGGMM5-ZdlGIE2Y0FlCPyVwHO1itw9tehwmAiQy3uIYi6zkodIvGWbKOEDOsMQyPZJFkgb3FARLMytLJiLpB9nHHSEJdtfa9tgpC-noD5cKHwmb8sVuSHfSf295nWiMvsEAN0Z310JmudOhNkMXhnxB6IhwGEnUiBmjVHcRGhentP9wwXI-2t1D7Zegp-0v2-_uC0ISwqmZnMvvBcN3NXUfeyXv7DMpi6Ja4EXy4BHgu01ch_4-X3I78UupsNIjWj_LqcFbm_6YoZP2XVkT9-BfkB_XIaGl014ZRghZ2xcrNBj9C4Lta_NGLlL8hKIcequg33U4yg3Jqu7ejTuMy6RwX6KFJNzAknrdfmOcV9lSTNboAf82G28zt3Kpb_vLS6xgdQKC64Kgy_0DBEM1arDRJ6N5dNq6Erm_Y5pxajI8aC2hMUp_JW2e9lhvvaaYLbGmTmABvxYLgHawMxgT4rpIQSIreo4TopFLUbQndP-RXaBzdOQ",
+    "token_type" : "bearer",
+    "expires_in" : 1799,
+    "refresh_token" : "7c09b11586864a79af4b698873fbb23b"
+}</code></pre>
+                                        </div>
+                                    </div>
+                                    
+                                </div><!--//"Get access token for Mobile client (Service manager)" section-block-->
+                                
+                                <div class="section-block" id="refresh-access-token" style="display: none">
+                                    <h3 class="block-title">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                        Refresh access token
+                                    </h3>                                   
+                                    <p>Refreshes the expired access token, using the <b>refresh_token</b> parameter received in the <a href="#get-access-token">Get token</a> request</p>
+                                    <p>&nbsp;</p>
+                                    <h6 class="text-uppercase">API endpoint</h6>
+                                    
+                                    <p><code>POST /api/v1/token</code></p>
+                                    
+                                    <p>&nbsp;</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="table-responsive">
+												<table class="table">
+													<thead>
+														<tr>
+															<th colspan="2" class="text-uppercase">Request Headers</th>                                                        
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<th width="30%" class="text-right">Content-Type</th>
+															<td class="small">"application/json"</td>
+														</tr>
+													</tbody>
+												</table>
+												
+												<table class="table">
+													<thead>
+														<tr>
+															<th colspan="2" class="text-uppercase">Request body</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<th width="30%" class="text-right">grant_type</th>
+															<td class="small">"refresh_token"</td>
+														</tr>
+														<tr>
+															<th width="30%" class="text-right">client_type</th>
+															<td class="small">"ThirdParty"</td>
+														</tr>
+														<tr>
+															<th width="30%" class="text-right">refresh_token</th>
+															<td class="small">refresh_token parameter got from <a href="#get-access-token">Get token</a> request, <i>string</i></td>
+														</tr>
+													</tbody>
+												</table>
+											</div><!--//table-responsive-->
+										</div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            
+                                            <pre><code class="language-bash">curl "https://izipass.ru/api/v1/token"
+  -X POST
+  -H "Content-Type: application/json"
+                                            </code></pre>
+					    <pre><code class="language-javascript">{
+     "client_type" : "ThirdParty",
+     "grant_type" : "refresh_token",
+     "refresh_token" : "7c09b11586864a79af4b698873fbb23b"
+}</code></pre>  
+					                    </div>
+                                    </div>
+					
+                                    <p>&nbsp;</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            
+                                            <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" class="text-uppercase">Response parameters</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th width="30%" class="text-right">access_token</th>
+                                                    <td class="small">New access token, <i>string</i></td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%" class="text-right">token_type</th>
+                                                    <td class="small">"bearer"</td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%" class="text-right">expires_in</th>
+                                                    <td class="small">Access token expiration time in seconds, <i>integer</i></td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%" class="text-right">refresh_token</th>
+                                                    <td class="small">A token for the next <a href="#refresh-access-token">Refresh token</a> request, <i>string</i></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><!--//table-responsive-->
+                                            
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">                              
+                                            <pre><code class="language-javascript">{
+    "access_token" : "nf1GpTxaaIpPgW4NGfL7ZpXOmXxFoPOaxjWwiGGMM5-ZdlGIE2Y0FlCPyVwHO1itw9tehwmAiQy3uIYi6zkodIvGWbKOEDOsMQyPZJFkgb3FARLMytLJiLpB9nHHSEJdtfa9tgpC-noD5cKHwmb8sVuSHfSf295nWiMvsEAN0Z310JmudOhNkMXhnxB6IhwGEnUiBmjVHcRGhentP9wwXI-2t1D7Zegp-0v2-_uC0ISwqmZnMvvBcN3NXUfeyXv7DMpi6Ja4EXy4BHgu01ch_4-X3I78UupsNIjWj_LqcFbm_6YoZP2XVkT9-BfkB_XIaGl014ZRghZ2xcrNBj9C4Lta_NGLlL8hKIcequg33U4yg3Jqu7ejTuMy6RwX6KFJNzAknrdfmOcV9lSTNboAf82G28zt3Kpb_vLS6xgdQKC64Kgy_0DBEM1arDRJ6N5dNq6Erm_Y5pxajI8aC2hMUp_JW2e9lhvvaaYLbGmTmABvxYLgHawMxgT4rpIQSIreo4TopFLUbQndP-RXaBzdOQ",
+    "token_type" : "bearer",
+    "expires_in" : 1799,
+    "refresh_token" : "7c09b11586864a79af4b698873fbb23b"
+}</code></pre>
+                                        </div>
+                                    </div>
+
+                                    
+                                </div><!--// "Refresh token" section-block-->
+                                
+                            </section><!--//doc-section-->
+                            
+                            <section id="api-methods" class="doc-section">
+                                <h2 class="section-title">API methods</h2>
+                                <div class="section-block" id="get-airports-list">
+                                    <h3 class="block-title">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                        Get airports by query
+                                    </h3>
+                                    <p>
+                                        Returns available airports matched by search query.
+                                    </p>
+                                    <p>&nbsp;</p>
+                                    <h6 class="text-uppercase">API endpoint</h6>
+                                    
+                                    <p><code>GET /api/v1/airports?query={airport query}&pageSize={page size}&page={page}</code></p>
+                                    
+                                    <p>&nbsp;</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+											<div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="2" class="text-uppercase">Request Headers</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">Accept-Language</th>
+                                                            <td class="small">2 character language code (ISO 639-1), supported are "ru" and "en", default is "en"</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div><!--//table-responsive-->                                            
+                                            <div class="table-responsive">
+												<table class="table">
+													<thead>
+														<tr>
+															<th colspan="2" class="text-uppercase">Request parameters</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<th width="30%" class="text-right">query</th>
+															<td class="small">
+																Airport search string, min length is 3 characters. <br/>
+																Search is performed among three-letter airport IATA code and airport's name, country, city in English and Russian languages.<br/>
+																Returned all airports that contain search string in any of the abovementioned fields.
+															</td>
+														</tr>
+														<tr>
+															<th width="30%" class="text-right">pageSize</th>
+															<td class="small">Number of elements to be returned on a single response page, <b>10</b> by default, <i>integer</i></td>
+														</tr>
+														<tr>
+															<th width="30%" class="text-right">page</th>
+															<td class="small">Current page, <b>1</b> by default, <i>integer</i></td>
+														</tr>
+													</tbody>
+												</table>
+											</div><!--//table-responsive-->
+                                            
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            
+                                            <pre><code class="language-bash">curl "https://izipass.ru/api/v1/airports?query=hrk&pageSize=10&page=10"
+  -X GET
+  -H "Authorization Bearer {access_token}"
+  -H "Accept-Language: en"</code></pre>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <p>&nbsp;</p>
+                                     <div class="row">
+                                         <div class="col-md-6 col-sm-6 col-xs-12">
+                                             
+                                             <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" class="text-uppercase">Response parameters</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th width="30%" class="text-right">query</th>
+                                                    <td class="small">Airport search string sent in the request</td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%" class="text-right">page</th>
+                                                    <td class="small">Requested page number or default, <i>integer</i></td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%" class="text-right">pageSize</th>
+                                                    <td class="small">Requested number of airports to be returned on one page or default, <i>integer</i></td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%" class="text-right">total</th>
+                                                    <td class="small">Total number of airports found by the <b>query</b> parameter regardless the <b>page</b> and <b>pageSize</b> parameters, <i>integer</i></td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%" class="text-right">airports</th>
+                                                    <td class="small">A list of airports found - see below</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><!--//table-responsive-->
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" class="text-uppercase">Airport parameters</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>id</th>
+                                                    <td class="small">Airport ID, <i>string</i></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>name</th>
+                                                    <td class="small">Localized airport name (if available localized, else - in English), <i>string</i></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>city</th>
+                                                    <td class="small">Localized name of a city airport relates to (if available localized, else - in English), <i>string</i></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>country</th>
+                                                    <td class="small">Localized country name (if available localized, else - in English), <i>string</i></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>iataCode</th>
+                                                    <td class="small">Three-character IATA code, <i>string</i></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><!--//table-responsive-->
+                                             
+                                         </div>
+                                         <div class="col-md-6 col-sm-6 col-xs-12">
+                                             
+                                             <pre><code class="language-javascript">{
+	"query" : "hrk",
+	"page" : 1,
+	"pageSize" : 10,
+	"total" : 1,
+	"airports" : [
+		{	
+			"id" : "d8e2b06d-b8c1-89b0-3004-4793fdc08cad",
+			"name" : "Ekaterinburg , Koltsovo Airport, Russia (SVX)",
+			"city" : "Ekaterinburg",
+			"country" : "Russia", 
+			"iataCode" : "SVX"
+		}
+	]
+}</code></pre>
+                                             
+                                         </div>
+                                     </div>
+                                    
+                                </div><!--//section-block-->
+
+
+                                <div class="section-block" id="get-available-airports">
+                                    <h3 class="block-title">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                        Get available airports
+                                    </h3>
+                                    <p>
+                                        Returns a list of IATA codes for the available airports
+                                    </p>
+                                    <p>&nbsp;</p>
+                                    <h6 class="text-uppercase">API endpoint</h6>
+                                    
+                                    <p><code>GET /api/v1/airports/available</code></p>
+                                    
+                                     <div class="row">
+                                         <div class="col-md-12 col-sm-12 col-xs-12">
+                                            
+                                            <pre><code class="language-bash">curl "https://izipass.ru/api/v1/airports/available"
+  -X GET
+  -H "Authorization Bearer {access_token}"</code></pre>
+                                            
+                                        </div>
+                                         <div class="col-md-12 col-sm-12 col-xs-12">
+                                             
+                                             <pre><code class="language-javascript">[
+    "EBB",
+    "DJG",
+    "CDG"
+    "XAC",
+    "TLV",
+    "VOG",
+    "SVX"
+]</code></pre>
+                                             
+                                         </div>
+                                     </div>
+                                    
+                                </div><!--//section-block-->
+
+                                <div class="section-block" id="get-available-terminals">
+                                    <h3 class="block-title">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                        Get available terminals in airports
+                                    </h3>
+                                    <p>
+                                        Returns a list of IATA codes with terminal info for available airports
+                                    </p>
+                                    <p>&nbsp;</p>
+                                    <h6 class="text-uppercase">API endpoint</h6>
+                                    
+                                    <p><code>GET /api/v1/airports/terminals</code></p>
+                                    
+                                     <div class="row">
+                                         <div class="col-md-12 col-sm-12 col-xs-12">
+                                            
+                                            <pre><code class="language-bash">curl "https://izipass.ru/api/v1/airports/terminals"
+  -X GET
+  -H "Authorization Bearer {access_token}"</code></pre>
+                                            
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="table-responsive">
+												<table class="table">
+													<thead>
+														<tr>
+															<th colspan="2" class="text-uppercase">Response parameters</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<th width="30%" class="text-right">iataCode</th>
+															<td class="small">Airport IATA code, <i>string</i></td>
+														</tr>
+														<tr>
+															<th width="30%" class="text-right">terminals</th>
+															<td class="small">A list of terminal model, see below</td>
+														</tr>
+													</tbody>
+												</table>
+                                            </div><!--//table-responsive-->
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" class="text-uppercase">Terminal model parameters</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th width="30%" class="text-right">name</th>
+                                                    <td class="small">
+                                                        Terminal name, <i>string</i></br>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%" class="text-right">code</th>
+                                                    <td class="small">
+                                                        Terminal code, <i>string</i>. <i style="color:red">For Airlines.</i></br>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%" class="text-right">hasServices</th>
+                                                    <td class="small">
+                                                        Is terminal has available services, <i>bool</i></br>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        </div><!--//table-responsive-->
+                                            
+                                        </div>
+                                         <div class="col-md-6 col-sm-6 col-xs-12">
+                                             
+                                             <pre><code class="language-javascript">[
+    {
+        "iataCode": "SVX",
+        "terminals": [
+            {
+                "name": "A",
+                "code": null,
+                "hasServices": true
+            },
+            {
+                "name": "B",
+                "code": null,
+                "hasServices": true
+            }
+        ]
+    },
+    {
+        "iataCode": "KPB",
+        "terminals": [
+            {
+                "name": "B",
+                "code": null,
+                "hasServices": false
+            },
+            {
+                "name": "C",
+                "code": null,
+                "hasServices": false
+            },
+            {
+                "name": "D",
+                "code": null,
+                "hasServices": true
+            },
+            {
+                "name": "F",
+                "code": null,
+                "hasServices": false
+            }
+        ]
+    }
+]</code></pre>
+                                             
+                                         </div>
+                                     </div>
+                                    
+                                </div><!--//section-block-->
+
+                                <div class="section-block" id="get-services-terms">
+                                    <h3 class="block-title">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                        Get airport services terms
+                                    </h3>
+                                    <p>
+                                        Returns a list of services terms which should be agreeded by passenger
+                                    </p>
+                                    <p>&nbsp;</p>
+                                    <h6 class="text-uppercase">API endpoint</h6>
+                                    
+                                    <p><code>GET /api/v1/airports/terms</code></p>
+                                    
+                                     <div class="row">
+                                         <div class="col-md-12 col-sm-12 col-xs-12">
+                                            
+                                            <pre><code class="language-bash">curl "https://izipass.ru/api/v1/airports/terms"
+  -X GET
+  -H "Authorization Bearer {access_token}"</code></pre>
+                                            
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="table-responsive">
+												<table class="table">
+													<thead>
+														<tr>
+															<th colspan="2" class="text-uppercase">Response parameters</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<th width="30%" class="text-right">services</th>
+															<td class="small">Services Ids, Array of <i>Guid</i></td>
+														</tr>
+                                                        <tr>
+															<th width="30%" class="text-right">serviceTermsTextRu</th>
+															<td class="small">Terms text on Russian language, <i>string in HTML formatting</i></td>
+                                                        </tr>
+                                                        <tr>
+															<th width="30%" class="text-right">serviceTermsTextEn</th>
+															<td class="small">Terms text on English language, <i>string in HTML formatting</i></td>
+                                                        </tr>
+                                                        <tr>
+															<th width="30%" class="text-right">serviceTermsUrlRu</th>
+															<td class="small">Terms link on Russian language, <i>string</i></td>
+                                                        </tr>
+                                                        <tr>
+															<th width="30%" class="text-right">serviceTermsUrlEn</th>
+															<td class="small">Terms link on English language, <i>string</i></td>
+														</tr>
+													</tbody>
+												</table>
+                                            </div><!--//table-responsive-->
+                                        </div>
+                                         <div class="col-md-6 col-sm-6 col-xs-12">
+                                             
+                                             <pre><code class="language-javascript">[
+    {
+        "services": [
+            "d9cd0086-243b-4eac-85a7-04203ad52010",
+            "f1fa3187-62d3-43ee-8228-05fc64abb8f6",
+            "a06d5aca-3380-4e11-99ef-10825c82b6f7",
+            "a64db233-1be0-45f5-80a2-39b321c36eaa",
+            "bab9bdbb-c23b-4d1c-a05d-5e65d322f78d",
+            "a6b78d2e-3119-4dfb-b810-a6941890ad3f"
+        ],
+        "serviceTermsTextRu": "&lt;p&gt;Terms RU&lt;/p&gt;",
+        "serviceTermsTextEn": "&lt;p&gt;Terms EN&lt;/p&gt;",
+        "serviceTermsUrlRu": "https://izipass.ru/ru/TermsOfUsage?id=855741b0-2ba8-4e41-ac10-b6305220710b",
+        "serviceTermsUrlEn": "https://izipass.ru/en/TermsOfUsage?id=855741b0-2ba8-4e41-ac10-b6305220710b"
+    },
+    {
+        "services": [
+            "18d8dac1-5dba-40b7-b668-f7ab531d3dc2"
+        ],
+        "serviceTermsTextRu": "&lt;p&gt;Terms RU&lt;/p&gt;",
+        "serviceTermsTextEn": "&lt;p&gt;Terms EN&lt;/p&gt;",
+        "serviceTermsUrlRu": "https://izipass.ru/ru/TermsOfUsage?id=96673232-29d9-495a-8ae6-da6cb79952bb",
+        "serviceTermsUrlEn": "https://izipass.ru/en/TermsOfUsage?id=96673232-29d9-495a-8ae6-da6cb79952bb"
+    },
+    {
+        "services": [
+            "8ad85140-a4f1-47b3-bb62-40864b86f96b",
+            "a2012d7c-5e1b-4a40-8663-6aed3319c1c5",
+            "2e1bdf4a-70c6-47eb-b30f-7652e5d4ddbe",
+            "ff196fb7-67c1-4202-83d7-91ee46aca50e",
+            "b1fb5049-ad22-4e6c-b27e-9313d3faca29",
+            "46490234-b5a3-4ff6-a8c4-da2ad853efc1"
+        ],
+        "serviceTermsTextRu": "&lt;p&gt;Terms RU&lt;/p&gt;",
+        "serviceTermsTextEn": "&lt;p&gt;Terms EN&lt;/p&gt;",
+        "serviceTermsUrlRu": "https://izipass.ru/ru/TermsOfUsage?id=b1ec4aac-b28d-46d1-a471-e8996aa71017",
+        "serviceTermsUrlEn": "https://izipass.ru/en/TermsOfUsage?id=b1ec4aac-b28d-46d1-a471-e8996aa71017"
+    }
+]</code></pre>
+                                             
+                                         </div>
+                                     </div>
+                                    
+                                </div><!--//section-block-->
+                                    
+                                
+                                <div class="section-block" id="get-services-list">
+                                    <h3 class="block-title">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                        Get available services at the airport                                        
+                                    </h3>
+                                    <p>
+                                        Returns full information about airport services including information about availability and language translations.
+                                    </p>
+                                    
+                                    <p>&nbsp;</p>
+                                    <h6 class="text-uppercase">API endpoint</h6>
+                                    
+                                    <p><code>GET /api/v1/airports/{airport_code}/availableservices?currencyCode={currencyCode}</code></p>
+
+                                    
+                                    <p>&nbsp;</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="2" class="text-uppercase">Request parameters</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">airport_code</th>
+                                                            <td class="small">Airport ID, <i>GUID</i> or Airport IATA code, <i>string</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">currencyCode</th>
+                                                            <td class="small">Excepted service prices currency, <i>string</i>. Supported is"RUB", default is "RUB"</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div><!--//table-responsive-->
+                                            
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            
+                                             <pre><code class="language-bash">curl "https://izipass.ru/api/v1/airports/d8e2b06d-b8c1-89b0-3004-4793fdc08cad/availableservices?currencyCode=RUB"
+  -X GET
+  -H "Authorization: Bearer {access_token}"</code></pre>
+
+  or
+
+  <pre><code class="language-bash">curl "https://izipass.ru/api/v1/airports/SVX/availableservices?currencyCode=RUB"
+    -X GET
+    -H "Authorization: Bearer {access_token}"</code></pre>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                         <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th colspan="2" class="text-uppercase">Response parameters</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th width="30%" class="text-right">servicesWithTranslations</th>
+                                                                    <td class="small">
+                                                                            A list of localized services model, see below</br>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        </div><!--//table-responsive-->
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="2" class="text-uppercase">Localized services model parameters</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">language</th>
+                                                            <td class="small">
+                                                                2 character language code (ISO 639-1), supported are "ru" and "en"</br>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">services</th>
+                                                            <td class="small">
+                                                                A list of service model, see below</br>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                </div><!--//table-responsive-->
+                                                <div class="table-responsive" id="service-model-params">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="2" class="text-uppercase">Service model parameters</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">id</th>
+                                                                <td class="small">Service ID, <i>GUID</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">category</th>
+                                                                <td class="small">Service category: BusinessLounge, VIP or FastTrack, <i>string</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">serviceDirection</th>
+                                                                <td class="small">Arrival/Departure/Transit, <i>string</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">customsType</th>
+                                                                <td class="small">The service may be available for one or more customs types: international/domestic/schengen/nonSchengen, <i>object with boolean fields</i> </td>
+                                                            </tr>                                                        
+                                                            <tr>
+                                                                <th width="30%" class="text-right">terminalName</th>
+                                                                <td class="small">Name of the terminal where the service is granted (As added by service provider), <i>string</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">name</th>
+                                                                <td class="small">Localized name of the service (if available localized, else - in English), <i>string</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">shortDescription</th>
+                                                                <td class="small">Localized short description of the service (if available localized, else - in English), <i>string</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">description</th>
+                                                                <td class="small">Localized description of the service (if available localized, else - in English), <i>string</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">meetingPoint</th>
+                                                                <td class="small">Localized meeting point for the service - could be non-applicable (if available localized, else - in English), <i>string</i></td>
+                                                            </tr> 
+                                                            <tr>
+                                                                <th width="30%" class="text-right">serviceCurrencyCode</th>
+                                                                <td class="small">Service prices currency code, <i>string</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">cancellationFees</th>
+                                                                <td class="small">A list of service cancellation fees, see below</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">price</th>
+                                                                <td class="small">Service prices - see below</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">plannedPrice</th>
+                                                                <td class="small">Planned service prices - see below</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">isPlannedPriceEnabled</th>
+                                                                <td class="small">Whether the service has planned price enabled or not, <i>boolean</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">isNonRefundable</th>
+                                                                <td class="small">Whether the service can be canceled or not, <i>boolean</i>. <i style="color:red">Some airports generate their QR-Codes which can't be canceled once generated</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">infantAge</th>
+                                                                <td class="small">Infant age object - see below</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">childAge</th>
+                                                                <td class="small">Child age object - see below</td>
+                                                            </tr>                                                       
+                                                            <tr>
+                                                                <th width="30%" class="text-right">adultAge</th>
+                                                                <td class="small">Adult age object - see below</td>
+                                                            </tr>   
+                                                            <tr>
+                                                                <th width="30%" class="text-right">facilities</th>
+                                                                <td class="small">A list of facilities available. For Business lounges only, see below</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">preOrderPeriodInMinutes</th>
+                                                                <td class="small">"Advance Booking Period" - That requires the booking to be finalized a certain number of minutes before the service delivery time, <i>int</i></td>
+                                                            </tr>
+															<tr>
+                                                                <th width="30%" class="text-right">weekSchedule</th>
+                                                                <td class="small">7-item list that represents a service schedule for a week, see below</td>
+                                                            </tr>
+															<tr>
+                                                                <th width="30%" class="text-right">unavailabilityPeriods</th>
+                                                                <td class="small">A list of unavailability periods, see below</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div><!--//table-responsive-->
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="2" class="text-uppercase">Cancellation fees parametrs</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">hoursBeforeServiceDateTime</th>
+                                                                <td class="small">
+																	Hours before planned service date time, <i>integer</i></br>
+																</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">feeInPercents</th>
+                                                                <td class="small">
+																	Cancellation fee percent, <i>integer</i></br>
+																</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+																	<small>Example: <i style="color: red">If an order is cancelled 6 h. before service time, you will be charged a 75% fee.</i></small>
+                                                </div><!--//table-responsive-->
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="2" class="text-uppercase">Price parameters</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">adult</th>
+                                                                <td class="small">Price for adults, <i>decimal</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">child</th>
+                                                                <td class="small">Child price, <i>decimal</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">infant</th>
+                                                                <td class="small">Infant price, <i>decimal</i></td>
+                                                            </tr>                                                                
+                                                        </tbody>
+                                                    </table>
+                                                </div><!--//table-responsive-->
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="2" class="text-uppercase">PlannedPrice parameters</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">plannedPriceChangeDateLocal</th>
+                                                                <td class="small">The new price is applicable for the orders dated by the "plannedPriceChangeDateLocal" or later in local time of the Airport, <i>datetime in ISO 8601 notation</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">plannedPriceChangeDateUtc</th>
+                                                                <td class="small">The new price is applicable for the orders dated by the "plannedPriceChangeDateLocal" or later in UTC, <i>datetime in ISO 8601 notation</i></td>
+                                                            </tr>	
+                                                            <tr>
+                                                                <th width="30%" class="text-right">adult</th>
+                                                                <td class="small">Planned price for adults, <i>decimal</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">child</th>
+                                                                <td class="small">Planned child price, <i>decimal</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">infant</th>
+                                                                <td class="small">Planned infant price, <i>decimal</i></td>
+                                                            </tr>                                                                
+                                                        </tbody>
+                                                    </table>
+                                                </div><!--//table-responsive-->                                          
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="2" class="text-uppercase">Age parameters</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">bottom</th>
+                                                                <td class="small">
+																	Lower age bound in years, <i>integer, may be null</i></br>
+																	Inclusive. If lower age for aduld is 16, a person who is 16 years old will pay full adult price.
+																</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">upper</th>
+                                                                <td class="small">
+																	Upper age bound in years, <i>integer, may be null</i></br>
+																	Exclusive. If upper age for infant is 2, infant, who is 2 years and 1 month old is considered a child and cannot be paid for using price for infant.
+																</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div><!--//table-responsive-->
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="2" class="text-uppercase">Facility parameters</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">name</th>
+                                                                <td class="small">Name of the facility, <i>string</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">isPaid</th>
+                                                                <td class="small">Whether the facility is paid or not, <i>boolean</i></td>
+                                                            </tr>	
+                                                        </tbody>
+                                                    </table>
+                                                </div><!--//table-responsive-->
+												<div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="2" class="text-uppercase">Weekday parameters</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+														    <tr>
+                                                                <th width="30%" class="text-right">dayNumber</th>
+                                                                <td class="small">Index number of a day in the week, <i>int from 0 to 6</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">name</th>
+                                                                <td class="small">Name of the day, from Monday to Sunday, <i>string</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">isActive</th>
+                                                                <td class="small">Whether the service works at this day or not, <i>boolean</i></td>
+                                                            </tr>
+															<tr>
+                                                                <th width="30%" class="text-right">begin</th>
+                                                                <td class="small">Service opening time, <i>time in ISO 8601 notation</i></td>
+                                                            </tr>
+															<tr>
+                                                                <th width="30%" class="text-right">end</th>
+                                                                <td class="small">Service closing time, <i>time in ISO 8601 notation</i></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div><!--//table-responsive-->
+												<div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="2" class="text-uppercase">Unavailability Period parameters</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">begin</th>
+                                                                <td class="small">Start of the unavailability period, <i>datetime in ISO 8601 notation</i></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="30%" class="text-right">end</th>
+                                                                <td class="small">End of the unavailability period, <i>datetime in ISO 8601 notation</i></td>
+                                                            </tr>	
+                                                        </tbody>
+                                                    </table>
+                                                </div><!--//table-responsive-->
+                                         </div>
+                                         <div class="col-md-6 col-sm-6 col-xs-12">
+                                             
+                                                <pre><code class="language-javascript">
+{
+    "servicesWithTranslations":[
+        {
+            "language":"en",
+            "services":[
+                {
+                    "id":"a094e49d-708e-c28b-724a-635eb08cad09",
+                    "category":"BusinessLounge",
+                    "name":"Business Lounge",
+                    "shortDescription":"You can comfortably spend time in the business lounge, located in the secure departure area for international flights.",
+                    "description":"If you are departing from the Kharkiv airport on an international flight, you can comfortably spend time in the business lounge, located in the secure departure area for international flights after going through preflight controls.\r\n\r\nBusiness lounge offers the following services free of charge:\r\nWi - Fi - access to the Internet, printer, individual sockets for charging devices, non-alcoholic hot and cold drinks, appetizers, snacks and fruit with an opportunity to order drinks and dishes from the advanced menu at additional price.",
+                    "meetingPoint":"International departure hall",
+                    "terminalName":"Tlv Passenger Terminal",
+                    "serviceCurrencyCode":"RUB",
+                    "cancellationFees":[
+                        {
+                            "hoursBeforeServiceDateTime":12,
+                            "feeInPercents":50
+                        },
+                        {
+                            "hoursBeforeServiceDateTime":24,
+                            "feeInPercents":25
+                        }
+                    ],
+                    "price":{
+                        "adult":12,
+                        "child":10,
+                        "infant":6
+                    },
+                    "plannedPrice":{
+                        "plannedPriceChangeDateLocal":"2019-06-07T00:00:00",
+                        "plannedPriceChangeDateUtc":"2019-06-06T21:00:00",
+                        "adult":15,
+                        "child":12,
+                        "infant":10
+                    },
+                    "isPlannedPriceEnabled":true,
+                    "isNonRefundable":false,
+                    "infantAge":{
+                        "bottom":null,
+                        "upper":2
+                    },
+                    "childAge":{
+                        "bottom":2,
+                        "upper":12
+                    },
+                    "adultAge":{
+                        "bottom":12,
+                        "upper":null
+                    },
+                    "facilities":[
+                        {
+                            "isEnabled":true,
+                            "isPaid":false,
+                            "name":"Beer & Wine"
+                        },
+                        {
+                            "isEnabled":true,
+                            "isPaid":false,
+                            "name":"Spirits & Liquor"
+                        },
+                        {
+                            "isEnabled":true,
+                            "isPaid":false,
+                            "name":"Premium Food"
+                        },
+                        {
+                            "isEnabled":true,
+                            "isPaid":false,
+                            "name":"WiFi"
+                        },
+                        {
+                            "isEnabled":true,
+                            "isPaid":false,
+                            "name":"TVs"
+                        },
+                        {
+                            "isEnabled":true,
+                            "isPaid":false,
+                            "name":"Showers"
+                        },
+                        {
+                            "isEnabled":true,
+                            "isPaid":false,
+                            "name":"Play Space for Children"
+                        }
+                    ],
+                    "serviceDirection":"Departure",
+                    "customsType":{
+                        "international":true,
+                        "domestic":true,
+                        "schengen":false,
+                        "nonSchengen":false
+                    },
+                    "preOrderPeriodInMinutes":120,
+                    "weekSchedule":[
+                        {
+                            "dayNumber":0,
+                            "dayName":"Monday",
+                            "isActive":false,
+                            "begin":"08:00:00",
+                            "end":"18:00:00"
+                        },
+                        {
+                            "dayNumber":1,
+                            "dayName":"Tuesday",
+                            "isActive":true,
+                            "begin":"08:00:00",
+                            "end":"18:00:00"
+                        },
+                        {
+                            "dayNumber":2,
+                            "dayName":"Wednesday",
+                            "isActive":false,
+                            "begin":"08:00:00",
+                            "end":"18:00:00"
+                        },
+                        {
+                            "dayNumber":3,
+                            "dayName":"Thursday",
+                            "isActive":true,
+                            "begin":"00:00:00",
+                            "end":"18:00:00"
+                        },
+                        {
+                            "dayNumber":4,
+                            "dayName":"Friday",
+                            "isActive":false,
+                            "begin":"00:00:00",
+                            "end":"23:59:00"
+                        },
+                        {
+                            "dayNumber":5,
+                            "dayName":"Saturday",
+                            "isActive":true,
+                            "begin":"00:00:00",
+                            "end":"23:59:00"
+                        },
+                        {
+                            "dayNumber":6,
+                            "dayName":"Sunday",
+                            "isActive":true,
+                            "begin":"00:00:00",
+                            "end":"23:59:00"
+                        }
+                    ],
+                    "unavailabilityPeriods":[
+                        {
+                            "begin":"2017-04-13T20:00:00",
+                            "end":"2017-04-22T23:00:00"
+                        },
+                        {
+                            "begin":"2017-04-14T07:30:00",
+                            "end":"2017-04-22T18:45:00"
+                        },
+                        {
+                            "begin":"2018-04-04T00:00:00",
+                            "end":"2018-05-23T17:00:00"
+                        },
+                        {
+                            "begin":"2018-04-13T16:00:00",
+                            "end":"2018-04-14T00:00:00"
+                        }
+                    ]
+                },
+                {
+                    "id":"2a12b469-16aa-473a-abd3-0190aa998c4c",
+                    "category":"FastTrack",
+                    "name":"Meet & Greet",
+                    "shortDescription":"Assistance with all the registration formalities, with baggage, a guide to the departure hall.",
+                    "description":"Nobody likes queues. Especially when you're in a hurry or getting late at all. Meet and greet service allows passengers not to spend extra time on necessary procedures, baggage registration, and check-in. This service lets you spend your day in the most productive way, and if you send a child or your parents by plane, you won't need to worry about them. Our assistant will help with the luggage, guide you to the business-class registration desk and offer to relax in the lounge or business-lounge if you or your relatives want some privacy.",
+                    "meetingPoint":"Information Desk",
+                    "terminalName":"Tlv Passenger Terminal",
+                    "serviceCurrencyCode":"RUB",
+                    "cancellationFees":[
+                        {
+                            "hoursBeforeServiceDateTime":6,
+                            "feeInPercents":100
+                        },
+                        {
+                            "hoursBeforeServiceDateTime":12,
+                            "feeInPercents":50
+                        }
+                    ],
+                    "price":{
+                        "adult":25,
+                        "child":15,
+                        "infant":0
+                    },
+                    "plannedPrice":null,
+                    "isPlannedPriceEnabled":false,
+                    "isNonRefundable": true,
+                    "infantAge":{
+                        "bottom":null,
+                        "upper":2
+                    },
+                    "childAge":{
+                        "bottom":2,
+                        "upper":12
+                    },
+                    "adultAge":{
+                        "bottom":12,
+                        "upper":null
+                    },
+                    "facilities":[
+
+                    ],
+                    "serviceDirection":"Arrival",
+                    "customsType":{
+                        "international":true,
+                        "domestic":true,
+                        "schengen":false,
+                        "nonSchengen":false
+                    },
+                    "preOrderPeriodInMinutes":60,
+                    "weekSchedule":[
+                        {
+                            "dayNumber":0,
+                            "dayName":"Monday",
+                            "isActive":false,
+                            "begin":"08:00:00",
+                            "end":"18:00:00"
+                        },
+                        {
+                            "dayNumber":1,
+                            "dayName":"Tuesday",
+                            "isActive":true,
+                            "begin":"08:00:00",
+                            "end":"18:00:00"
+                        },
+                        {
+                            "dayNumber":2,
+                            "dayName":"Wednesday",
+                            "isActive":false,
+                            "begin":"08:00:00",
+                            "end":"18:00:00"
+                        },
+                        {
+                            "dayNumber":3,
+                            "dayName":"Thursday",
+                            "isActive":true,
+                            "begin":"00:00:00",
+                            "end":"18:00:00"
+                        },
+                        {
+                            "dayNumber":4,
+                            "dayName":"Friday",
+                            "isActive":false,
+                            "begin":"00:00:00",
+                            "end":"23:59:00"
+                        },
+                        {
+                            "dayNumber":5,
+                            "dayName":"Saturday",
+                            "isActive":true,
+                            "begin":"00:00:00",
+                            "end":"23:59:00"
+                        },
+                        {
+                            "dayNumber":6,
+                            "dayName":"Sunday",
+                            "isActive":true,
+                            "begin":"00:00:00",
+                            "end":"23:59:00"
+                        }
+                    ],
+                    "unavailabilityPeriods":[
+                        {
+                            "begin":"2017-04-13T20:00:00",
+                            "end":"2017-04-22T23:00:00"
+                        },
+                        {
+                            "begin":"2017-04-14T07:30:00",
+                            "end":"2017-04-22T18:45:00"
+                        },
+                        {
+                            "begin":"2018-04-04T00:00:00",
+                            "end":"2018-05-23T17:00:00"
+                        },
+                        {
+                            "begin":"2018-04-13T16:00:00",
+                            "end":"2018-04-14T00:00:00"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+                                           </code></pre>                                                  
+                                         </div>
+                                     </div>
+                                    
+                                </div><!--//section-block-->
+                                
+                                <div class="section-block" id="get-service-price" style="display: none !important"> 
+                                    <h3 class="block-title">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                        Get service price
+                                    </h3>
+                                    <p>
+                                        Returns a total service price for selected number of people for choosen service.
+                                    </p>
+                                    
+                                    <p>&nbsp;</p>
+                                    <h6 class="text-uppercase">API endpoint</h6>
+                                    
+                                    <p><code>GET /api/v1/services/{service_id}/price?adultCount={adults}&amp;childCount={children}&amp;infantCount={infants}&amp;currencyCode={currencyCode}</code></p>
+                                    
+                                    <p>&nbsp;</p>
+                                    <div class="row">
+                                         <div class="col-md-6 col-sm-6 col-xs-12">
+                                             
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="2" class="text-uppercase">Request parameters</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">service_id</th>
+                                                            <td class="small">Service ID, <i>GUID</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">adultCount</th>
+                                                            <td class="small">Number of adults in the order, <i>integer</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">childCount</th>
+                                                            <td class="small">Number of children in the order, <i>integer</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">infantCount</th>
+                                                            <td class="small">Number of infants in the count, <i>integer</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">currencyCode</th>
+                                                            <td class="small">Expected result currency, <i>string</i>. Supported is "RUB", default is "RUB"</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                
+                                            </div><!--//table-responsive-->
+                                             
+                                         </div>
+                                         <div class="col-md-6 col-sm-6 col-xs-12">
+                                             
+                                             <pre><code class="language-bash">curl "https://izipass.ru/api/v1/services/d8e2b06d-b8c1-89b0-3004-4793fdc08cad/price?adultCount=2&amp;childCount=1&amp;infantCount=0&amp;currencyCode=RUB"
+  -X GET
+  -H "Authorization Bearer {access_token}"</code></pre>
+                                             
+                                         </div>
+                                     </div>
+                                    
+                                    <div class="row">
+                                         <div class="col-md-6 col-sm-6 col-xs-12">
+                                             
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="2" class="text-uppercase">Response parameters</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">price</th>
+                                                            <td class="small">Total price for all people in the order, <i>decimal</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">currencyCode</th>
+                                                            <td class="small">Total price currency code(ISO 4217), <i>string</i></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div><!--//table-responsive-->
+                                            
+                                         </div>
+                                         <div class="col-md-6 col-sm-6 col-xs-12">
+                                             
+                                             <pre><code class="language-javascript">{
+    "price" : 32.55,
+    "currencyCode": "RUB"
+}</code></pre>
+                                             
+                                         </div>
+                                     </div>
+                                    
+                                </div><!--//section-block-->
+                                
+                                
+                                <div class="section-block" style="display: none !important" id="create-order">
+                                    <h3 class="block-title">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                        Create order
+                                    </h3>
+                                    
+                                    
+                                    <p>
+                                        Creates an order with specified parameters and returns number of created order .
+                                    </p>
+                                    
+                                    <p>&nbsp;</p>
+                                    <h6 class="text-uppercase">API endpoint</h6>
+                                    
+                                    <p><code>POST /api/v1/orders</code></p>
+                                    
+                                    <p>&nbsp;</p>
+                                    <div class="row">
+                                         <div class="col-md-6 col-sm-6 col-xs-12">										
+                                            <div class="table-responsive">
+											
+												<table class="table">
+													<thead>
+														<tr>
+															<th colspan="2" class="text-uppercase">Request Headers</th>                                                        
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<th width="30%" class="text-right">Content-Type</th>
+															<td class="small">"application/json"</td>
+														</tr>
+													</tbody>
+												</table>
+												
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="2" class="text-uppercase">Request parameters</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">serviceId</th>
+                                                            <td class="small">Service ID, <i>GUID</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">flightNumber</th>
+                                                            <td class="small">Customer(s) flight number to verify a service time, <i>string</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">serviceDate</th>
+                                                            <td class="small">Order date, <i>datetime in ISO 8601 notation</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">adultCount</th>
+                                                            <td class="small">Number of adults in the order, <i>integer</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">childCount</th>
+                                                            <td class="small">Number of children in the order, <i>integer</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">infantCount</th>
+                                                            <td class="small">Number of infants in the count, <i>integer</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">comment</th>
+                                                            <td class="small">Additional information specified by the customer, <i>string</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">firstName</th>
+                                                            <td class="small">Customer's first name, <i>string</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">lastName</th>
+                                                            <td class="small">Customer's last name, <i>string</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">phone</th>
+                                                            <td class="small">
+																Customer's contact phone in international format, <i>string</i><br/>
+																Validated according to following <a href="https://regexr.com/3oo9i" target="_blank">regex</a>
+															</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">email</th>
+                                                            <td class="small">
+																Customer's contact email, <i>string</i><br/>
+																Validated according to following <a href="https://regexr.com/3nfbm" target="_blank">regex</a>
+															</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">otherPassengersContactDetails</th>
+                                                            <td class="small">A free-text parameter, required if a total number of people in the order is greater than one. Contact details of all passengers are required by customs officers, <i>string</i></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                
+                                            </div><!--//table-responsive-->
+                                             
+                                         </div>
+                                         <div class="col-md-6 col-sm-6 col-xs-12">
+                                             
+                                             <pre><code class="language-bash">curl "https://izipass.ru/api/v1/orders"
+    -X POST
+    -H "Authorization: Bearer {access_token}"
+</code></pre>
+                                   
+					     <pre><code class="language-javascript">{
+  "serviceId": "d8e2b06d-b8c1-89b0-3004-4793fdc08cad",
+  "flightNumber": "PC 751",
+  "serviceDate": "2018-04-02T13:35:00",
+  "adultCount": 2,
+  "childCount": 2,
+  "infantCount": 2,
+  "comment": "we're travelling with a dog",
+  "firstName": "John",
+  "lastName": "Doe",
+  "phone": "+1 555-55-55",
+  "email": "john.doe@email.com",
+  "otherPassengersContactDetails": "Marissa Doe, Ben Doe"
+}</code></pre>
+                                             
+                                         </div>
+                                     </div>
+                                    
+                                    
+                                    <p>&nbsp;</p>
+                                    <div class="row">
+                                         <div class="col-md-6 col-sm-6 col-xs-12">
+                                             
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="2" class="text-uppercase">Response parameters</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">orderNumber</th>
+                                                            <td class="small">Number of the created order, <i>int</i></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div><!--//table-responsive-->
+                                            
+                                         </div>
+                                         <div class="col-md-6 col-sm-6 col-xs-12">
+                                             
+                                             <pre><code class="language-javascript">{
+	"orderNumber" : 78821
+}</code></pre>
+                                             
+                                         </div>
+                                     </div>
+                                    
+                                    
+                                    
+                                </div><!--//section-block-->  
+                                <div class="section-block" id="get-relevant-services">
+                                    <h3 class="block-title">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                        Get relevant services
+                                    </h3>
+                                    <p>
+                                        Returns relevant services by flight points.
+                                    </p>
+                                    <p>&nbsp;</p>
+                                    <h6 class="text-uppercase">API endpoint</h6>
+                                    
+                                    <p><code>POST /api/v1/services</code></p>
+                                    
+                                    <p>&nbsp;</p>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+											<div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="2" class="text-uppercase">Request Headers</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">Accept-Language</th>
+                                                            <td class="small">2 character language code (ISO 639-1), supported are "ru" and "en", default is "en"</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div><!--//table-responsive-->                                            
+                                            <div class="table-responsive">
+												<table class="table">
+													<thead>
+														<tr>
+															<th colspan="2" class="text-uppercase">Request parameters</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+                                                            <th width="30%" class="text-right">flightPoints</th>
+                                                            <td class="small">A list of flight points - see below</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">currencyCode</th>
+                                                            <td class="small">Excepted service prices currency, <i>string</i>. Supported "RUB"</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">passengersAges</th>
+                                                            <td class="small">An array of passengers ages, <i>array of integer</i>. <i style="color:red">Optional for more relevant result</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">showNonRefundableServices</th>
+                                                            <td class="small">Show nonrefundable services in results, <i>bool</i>. <i style="color:red">Default is <b>false<b></i></td>
+                                                        </tr>
+													</tbody>
+												</table>
+                                            </div><!--//table-responsive-->
+                                            
+                                            <div class="table-responsive">
+                                                <table class="table" id="flightpoint-params">
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="2" class="text-uppercase">FlightPoint parameters</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">queueNumber</th>
+                                                            <td class="small">Queue number of Arrival/Departure airport in direction, <i>integer</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">airportIataCode</th>
+                                                            <td class="small">Arrival/Departure airport IataCode, <i>string</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">airportTerminal</th>
+                                                            <td class="small">Arrival/Departure airport terminal name, <i>string</i>. <i style="color:red">Optional for more relevant result</i></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="30%" class="text-right">airportLocalTime</th>
+                                                            <td class="small">Arrival/Departure date and time in local times of the respective airport, <i>datetime in ISO 8601 notation</i>. <i style="color:red">Optional for more relevant result. API will return valid services to order in next 30 minutes, after this time you should validate time on your side or send request again.</i></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div><!--//table-responsive-->
+                                            
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            
+                                            <pre><code class="language-bash">curl "https://izipass.ru/api/v1/services"
+  -X POST
+  -H "Authorization Bearer {access_token}"
+  -H "Accept-Language: en"</code></pre>
+  <pre><code class="language-javascript">{
+	"flightPoints": [
+		{
+			"queueNumber": 1,
+			"airportIataCode": "SVX",
+			"airportTerminal": "B",
+			"airportLocalTime": "2020-02-29T17:35:00"
+		},
+		{
+			"queueNumber": 2,
+			"airportIataCode": "KBP",
+			"airportTerminal": "F",
+			"airportLocalTime" : "2020-02-29T18:45:00"
+		},
+		{
+			"queueNumber": 3,
+			"airportIataCode": "KBP",
+			"airportTerminal": "D",
+			"airportLocalTime": "2020-02-29T21:10:00"
+		},
+		{
+			"queueNumber": 4,
+			"airportIataCode": "TBS",
+			"airportTerminal": "A",
+			"airportLocalTime" : "2020-03-01T04:36:00"
+		}
+	],
+    "currencyCode": "RUB",
+    "passengersAges": [6, 34, 36],
+    "showNonRefundableServices": true
+}</code></pre>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <p>&nbsp;</p>
+                                     <div class="row">
+                                         <div class="col-md-6 col-sm-6 col-xs-12">
+                                             
+                                             <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" class="text-uppercase">Response parameters</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th width="30%" class="text-right">flightPoints</th>
+                                                    <td class="small">A list of <span><i><a href="#flightpoint-params">flight points</a> </i></span> with additional parameter <i><b>relevantServices</b></i> - see below</td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%" class="text-right">relevantServices</th>
+                                                    <td class="small">A list of <span><i><a href="#service-model-params">service model</a></i></span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><!--//table-responsive-->
+                                             
+                                         </div>
+                                         <div class="col-md-6 col-sm-6 col-xs-12">
+                                             
+                                             <pre><code class="language-javascript">{
+    "flightPoints": [
+        {
+            "airportIataCode": "SVX",
+            "airportTerminal": "B",
+            "airportLocalTime": "2020-02-29T17:35:00",
+            "queueNumber": 1,
+            "relevantServices": [
+                {
+                    "weekSchedule": [
+                        {
+                            "dayNumber": 0,
+                            "dayName": "Monday",
+                            "isActive": true,
+                            "begin": "00:00:00",
+                            "end": "23:59:00"
+                        },
+                        {
+                            "dayNumber": 1,
+                            "dayName": "Tuesday",
+                            "isActive": true,
+                            "begin": "00:00:00",
+                            "end": "23:59:00"
+                        },
+                        {
+                            "dayNumber": 3,
+                            "dayName": "Thursday",
+                            "isActive": true,
+                            "begin": "00:00:00",
+                            "end": "23:59:00"
+                        },
+                        {
+                            "dayNumber": 4,
+                            "dayName": "Friday",
+                            "isActive": true,
+                            "begin": "00:00:00",
+                            "end": "23:59:00"
+                        },
+                        {
+                            "dayNumber": 5,
+                            "dayName": "Saturday",
+                            "isActive": true,
+                            "begin": "00:00:00",
+                            "end": "23:59:00"
+                        },
+                        {
+                            "dayNumber": 2,
+                            "dayName": "Wednesday",
+                            "isActive": true,
+                            "begin": "00:00:00",
+                            "end": "23:59:00"
+                        },
+                        {
+                            "dayNumber": 6,
+                            "dayName": "Sunday",
+                            "isActive": true,
+                            "begin": "00:00:00",
+                            "end": "23:59:00"
+                        }
+                    ],
+                    "unavailabilityPeriods": [],
+                    "cancellationFees": [
+                        {
+                            "hoursBeforeServiceDateTime": 2,
+                            "feeInPercents": 50
+                        }
+                    ],
+                    "id": "00da20a2-bede-4d16-a733-648f2acb3f3e",
+                    "category": "VipService",
+                    "name": "VIP service",
+                    "shortDescription": "Kharkiv Airport provides passengers with services of the highest level of comfort in VIP terminal",
+                    "description": "Kharkiv Airport provides the most demanding passengers with services of the highest level of comfort: in VIP terminal prior to departure you can relax or conduct negotiations in a separate waiting room, use limitless high speed Internet access via wireless Wi-Fi, order drinks and appetizers from the menu of “Polet” restaurant.\r\n\r\nAt this time your personal assistant can help you complete all the paperwork necessary for departure and check -in your baggage.\r\n\r\nService at VIP terminal includes going through aviation security control, customs and passport control(if you are travelling internationally) through separate check points without the need to wait in line.\r\n\r\nYou will be transported to the airplane on a minibus of business class. If you are using your personal car, you can park it in the secure parking area across from VIP terminal.",
+                    "meetingPoint": "VIP terminal",
+                    "terminalName": "B",
+                    "serviceCurrencyCode": "RUB",
+                    "price": {
+                        "adult": 1763.75,
+                        "child": 949.72,
+                        "infant": 949.72
+                    },
+                    "plannedPrice": null,
+                    "isPlannedPriceEnabled": false,
+                    "isNonRefundable": true,
+                    "infantAge": {
+                        "bottom": null,
+                        "upper": 2
+                    },
+                    "childAge": {
+                        "bottom": 2,
+                        "upper": 12
+                    },
+                    "adultAge": {
+                        "bottom": 12,
+                        "upper": null
+                    },
+                    "facilities": [],
+                    "serviceDirection": "Departure",
+                    "customsType": {
+                        "international": true,
+                        "domestic": true,
+                        "schengen": true,
+                        "nonSchengen": true
+                    },
+                    "preOrderPeriodInMinutes": 120
+                }
+            ]
+        },
+        {
+            "airportIataCode": "KBP",
+            "airportTerminal": "F",
+            "airportLocalTime": "2020-02-29T18:45:00",
+            "queueNumber": 2,
+            "relevantServices": []
+        },
+        {
+            "airportIataCode": "KBP",
+            "airportTerminal": "D",
+            "airportLocalTime": "2020-02-29T21:10:00",
+            "queueNumber": 3,
+            "relevantServices": [
+                {
+                    "weekSchedule": [
+                        {
+                            "dayNumber": 0,
+                            "dayName": "Monday",
+                            "isActive": true,
+                            "begin": "00:00:00",
+                            "end": "23:59:00"
+                        },
+                        {
+                            "dayNumber": 1,
+                            "dayName": "Tuesday",
+                            "isActive": true,
+                            "begin": "00:00:00",
+                            "end": "23:59:00"
+                        },
+                        {
+                            "dayNumber": 2,
+                            "dayName": "Wednesday",
+                            "isActive": true,
+                            "begin": "00:00:00",
+                            "end": "23:59:00"
+                        },
+                        {
+                            "dayNumber": 3,
+                            "dayName": "Thursday",
+                            "isActive": true,
+                            "begin": "00:00:00",
+                            "end": "23:59:00"
+                        },
+                        {
+                            "dayNumber": 4,
+                            "dayName": "Friday",
+                            "isActive": true,
+                            "begin": "00:00:00",
+                            "end": "23:59:00"
+                        },
+                        {
+                            "dayNumber": 5,
+                            "dayName": "Saturday",
+                            "isActive": true,
+                            "begin": "00:00:00",
+                            "end": "23:59:00"
+                        },
+                        {
+                            "dayNumber": 6,
+                            "dayName": "Sunday",
+                            "isActive": true,
+                            "begin": "00:00:00",
+                            "end": "23:59:00"
+                        }
+                    ],
+                    "unavailabilityPeriods": [],
+                    "cancellationFees": [
+                        {
+                            "hoursBeforeServiceDateTime": 6,
+                            "feeInPercents": 50
+                        },
+                        {
+                            "hoursBeforeServiceDateTime": 12,
+                            "feeInPercents": 25
+                        }
+                    ],
+                    "id": "46c68946-d320-2975-48d6-eea33a46fbe0",
+                    "category": "BusinessLounge",
+                    "name": "Business Lounge",
+                    "shortDescription": "Test",
+                    "description": "Test",
+                    "meetingPoint": "Terminal stairs",
+                    "terminalName": "D",
+                    "serviceCurrencyCode": "RUB",
+                    "price": {
+                        "adult": 61.7,
+                        "child": 61.7,
+                        "infant": 61.7
+                    },
+                    "plannedPrice": null,
+                    "isPlannedPriceEnabled": false,
+                    "isNonRefundable": false,
+                    "infantAge": {
+                        "bottom": null,
+                        "upper": 2
+                    },
+                    "childAge": {
+                        "bottom": 2,
+                        "upper": 12
+                    },
+                    "adultAge": {
+                        "bottom": 12,
+                        "upper": null
+                    },
+                    "facilities": [],
+                    "serviceDirection": "Departure",
+                    "customsType": {
+                        "international": true,
+                        "domestic": false,
+                        "schengen": false,
+                        "nonSchengen": true
+                    },
+                    "preOrderPeriodInMinutes": 0
+                }
+            ]
+        },
+        {
+            "airportIataCode": "TBS",
+            "airportTerminal": "A",
+            "airportLocalTime": "2020-03-01T04:36:00",
+            "queueNumber": 4,
+            "relevantServices": []
+        }
+    ]
+}</code></pre>
+                                             
+                                         </div>
+                                     </div>
+                                    
+                                </div>
+                                <div class="section-block" id="get-balance">
+                                    <h3 class="block-title">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                        Get account balance info
+                                    </h3>
+                                    <p>
+                                        Returns info about your account balance
+                                    </p>
+                                    <p>&nbsp;</p>
+                                    <h6 class="text-uppercase">API endpoint</h6>
+                                    
+                                    <p><code>GET /api/v1/me/balance</code></p>
+                                    
+                                     <div class="row">
+                                         <div class="col-md-12 col-sm-12 col-xs-12">
+                                            
+                                            <pre><code class="language-bash">curl "https://izipass.ru/api/v1/me/balance"
+  -X GET
+  -H "Authorization Bearer {access_token}"</code></pre>
+                                            
+                                        </div>
+                                         <div class="col-md-12 col-sm-12 col-xs-12">
+                                             
+                                             <pre><code class="language-javascript">{
+    "creditLimit": 0.00,
+    "currency": "RUB",
+    "amount": 99936685.02
+}</code></pre>
+                                             
+                                         </div>
+                                     </div>
+                                    
+                                </div><!--//section-block-->                                                             
+
+                            </section><!--//doc-section-->
+
+							<section id="errors" class="doc-section">
+                                
+                                <h2 class="section-title">Errors</h2>
+                                <p>&nbsp;</p>
+                                    
+
+                                <div class="section-block">
+					<div class="row">
+						<div class="col-md-9 col-sm-9 col-xs-12">
+							<table class="table">
+								<thead>
+									<tr>
+										<th colspan="2" class="text-uppercase">General errors description</th>                                                        
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th width="30%" class="text-right">NOT_FOUND</th>
+										<td class="small">Resource you are looking for was not found. Recheck ID you are sending</td>
+									</tr>
+									<tr>
+										<th width="30%" class="text-right">INTERNAL_SERVER_ERROR</th>
+										<td class="small">Something went wrong. Please contact us</td>
+									</tr>
+									<tr>
+										<th width="30%" class="text-right">EMPTY_SEARCH_QUERY</th>
+										<td class="small">Cannot search for airport without input</td>
+									</tr>
+									<tr>
+										<th width="30%" class="text-right">INVALID_PARAMETERS_PROVIDED</th>
+										<td class="small">Information provided for order creation is invalid. Please see details for additional information</td>
+									</tr>
+									<tr>
+										<th width="30%" class="text-right">MISSING_ORDER_INFORMATION</th>
+										<td class="small">Information for order creation is not provided</td>
+									</tr>
+									<tr>
+										<th width="30%" class="text-right">EMAIL_ALREADY_TAKEN</th>
+										<td class="small">There exists an account associated with this email address in one of the admin areas (either Global Admin, Supplier or Agent). Please use another email address</td>
+									</tr>
+									<tr>
+										<th width="30%" class="text-right">INVALID_JSON_FORMAT</th>
+										<td class="small">Invalid json format</td>
+                                    </tr>
+                                    <tr>
+										<th width="30%" class="text-right">NON_REFUNDABLE_SERVICE</th>
+										<td class="small">Can not cancel an order for nonrefundable service</td>
+                                    </tr>
+                                    <tr>
+										<th width="30%" class="text-right">NOT_ENOUGH_FUNDS</th>
+										<td class="small">Not enough funds on your balance to pay for order</td>
+                                    </tr>
+                                    <tr>
+										<th width="30%" class="text-right">EXPECTED_PRICE_MISMATCH</th>
+										<td class="small">Expected price mismatch with order total price</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+                                    
+                                     
+                                </div><!--//section-block-->
+							</section><!--//doc-section-->
+							
+                            
+                        </div><!--//content-inner-->
+                    </div><!--//doc-content-->
+                    <div class="doc-sidebar">
+                        <nav id="doc-nav">
+                            <ul id="doc-menu" class="nav doc-menu hidden-xs" data-spy="affix">
+                                <li><a class="scrollto" href="#endpoints">Endpoints</a></li>
+                                <li>
+                                    <a class="scrollto" href="#authentication">Authentication</a>
+                                    <ul class="nav doc-sub-menu">
+                                        <li><a class="scrollto" href="#get-access-token">Get access token</a></li>
+                                        <li style="display: none"><a class="scrollto" href="#get-access-token-mobile">Get access token for mobile client</a></li>                                       
+                                        <li style="display: none"><a class="scrollto" href="#refresh-access-token">Refresh access token</a></li>
+                                    </ul><!--//nav-->
+                                </li>
+                                <li>
+                                    <a class="scrollto" href="#api-methods">API methods</a>
+                                    <ul class="nav doc-sub-menu">
+                                        <li><a class="scrollto" href="#get-airports-list">Get airports by query</a></li>
+                                        <li><a class="scrollto" href="#get-available-airports">Get available airports</a></li>
+                                        <li><a class="scrollto" href="#get-available-terminals">Get available terminals</a></li>
+                                        <li><a class="scrollto" href="#get-services-terms">Get services terms</a></li>
+                                        <li><a class="scrollto" href="#get-services-list">Get available services at the airport</a></li>
+                                        <li><a class="scrollto" href="#get-relevant-services">Get relevant services</a></li>
+                                        <li><a class="scrollto" href="#get-balance">Get account balance info</a></li>
+                                    </ul><!--//nav-->
+                                </li>
+                                <li><a class="scrollto" href="#errors">Errors</a></li>
+                            </ul><!--//doc-menu-->
+                        </nav>
+                    </div><!--//doc-sidebar-->
+                </div><!--//doc-body-->              
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+        
+    </div><!--//page-wrapper-->
+    
+    <footer id="footer" class="footer text-center">
+        <div class="container">
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright">Created by <a href="https://izipass.ru" target="_blank">IziPass</a>, </small>
+            <small class="copyright">Designed by <a href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a></small>
+            
+        </div><!--//container-->
+    </footer><!--//footer-->
+    
+     
+    <!-- Main Javascript -->          
+    <script type="text/javascript" src="assets/plugins/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>  
+    <script type="text/javascript" src="assets/plugins/lightbox/dist/ekko-lightbox.min.js"></script>                                                                
+    <script type="text/javascript" src="assets/plugins/jquery-match-height/jquery.matchHeight-min.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    
+</body>
+</html>
