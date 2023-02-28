@@ -552,6 +552,18 @@
                                                         <th width="30%" class="text-right">errorMessage</th>
                                                         <td class="small">Error message if something went wrong, <i>string</i>.<a href="api.html#errors" target="_blank"> Possible errors list</a>.</td>
                                                     </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">supplierName</th>
+                                                        <td class="small">Official supplier's name, <i>string</i>.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">suplierINN</th>
+                                                        <td class="small">Supplier taxpayer number, <i>string</i>.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="30%" class="text-right">supplierVAT</th>
+                                                        <td class="small">Supplier VAT type, <i>integer</i>. <b style="color:red">1 - without VAT; 2 - VAT 0%, 3 - VAT 10%, 4 - VAT 10/110, 5 - VAT 20%, 6 - VAT 20/120</b></td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
 
@@ -580,7 +592,10 @@
             "serviceName": "Business Lounge",
             "serviceDateLocal": "2019-04-02T13:35:00",
             "price": 640.00,
-            "errorMessage": null
+            "errorMessage": null,
+            "supplierName": "SVX Supplier Official",
+            "suplierINN": "123456789110",
+            "supplierVAT": 5
         },
         {
             "iziPassOrderId": "07b091a3-ffde-ef89-f319-b88360b30f83",
@@ -592,7 +607,10 @@
             "serviceName": "Business Lounge 2",
             "serviceDateLocal": "2019-04-15T23:35:00",
             "price": 720.00,
-            "errorMessage": null
+            "errorMessage": null,
+            "supplierName": "SVX Supplier Official",
+            "supplierINN": "123456789110",
+            "supplierVAT": 5
         }
     ]
 }</code></pre>
