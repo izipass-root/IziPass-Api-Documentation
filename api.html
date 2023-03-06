@@ -1056,6 +1056,18 @@
                                                                 <th width="30%" class="text-right">unavailabilityPeriods</th>
                                                                 <td class="small">A list of unavailability periods, see below</td>
                                                             </tr>
+							    <tr>
+                                                        	<th width="30%" class="text-right">supplierName</th>
+                                                        	<td class="small">Official supplier's name, <i>string</i>.</td>
+                                                    	    </tr>
+                                                    	    <tr>
+                                                        	<th width="30%" class="text-right">suplierINN</th>
+                                                        	<td class="small">Supplier taxpayer number, <i>string</i>.</td>
+                                                            </tr>
+                                                    	    <tr>
+                                                        	<th width="30%" class="text-right">supplierVAT</th>
+                                                        	<td class="small">Supplier VAT type, <i>integer</i>. <b style="color:red">1 - without VAT; 2 - VAT 0%, 3 - VAT 10%, 4 - VAT 10/110, 5 - VAT 20%, 6 - VAT 20/120</b></td>
+                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div><!--//table-responsive-->
@@ -1398,7 +1410,10 @@
                             "begin":"2018-04-13T16:00:00",
                             "end":"2018-04-14T00:00:00"
                         }
-                    ]
+                    ],
+            	    "supplierName": "SVX Supplier Official",
+            	    "supplierINN": "123456789110",
+            	    "supplierVAT": 5
                 },
                 {
                     "id":"2a12b469-16aa-473a-abd3-0190aa998c4c",
@@ -1518,7 +1533,10 @@
                             "begin":"2018-04-13T16:00:00",
                             "end":"2018-04-14T00:00:00"
                         }
-                    ]
+                    ],
+            	    "supplierName": "SVX Supplier Official",
+            	    "supplierINN": "123456789110",
+            	    "supplierVAT": 5
                 }
             ]
         }
@@ -2043,6 +2061,9 @@
                     },
                     "facilities": [],
                     "serviceDirection": "Departure",
+            	    "supplierName": "SVX Supplier Official",
+            	    "supplierINN": "123456789110",
+            	    "supplierVAT": 5,
                     "customsType": {
                         "international": true,
                         "domestic": true,
@@ -2159,6 +2180,9 @@
                     },
                     "facilities": [],
                     "serviceDirection": "Departure",
+            	    "supplierName": "SVX Supplier Official",
+            	    "supplierINN": "123456789110",
+            	    "supplierVAT": 5,
                     "customsType": {
                         "international": true,
                         "domestic": false,
